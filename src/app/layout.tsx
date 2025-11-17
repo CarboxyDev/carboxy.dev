@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: 'CarboxyDev',
   description:
     'Full-stack developer with strong UI/UX skills. Currently available for freelance and contract work. Experienced in React.js, Next.js, Node.js, and Tailwind CSS.',
-  authors: [{ name: 'CarboxyDev', url: 'https://carboxy.xyz' }],
+  authors: [{ name: 'CarboxyDev', url: 'https://carboxy.dev' }],
   category: 'Personal Portfolio',
   keywords: [
     'CarboxyDev',
@@ -29,16 +29,16 @@ export const metadata: Metadata = {
     'open for freelance',
     'available developer',
   ],
-  metadataBase: new URL('https://carboxy.xyz'),
+  metadataBase: new URL('https://carboxy.dev'),
   openGraph: {
     title: 'CarboxyDev',
     description:
       'Currently open for work and contract projects. I build stunning full-stack web applications using React, Next.js, and Node.js.',
-    url: 'https://carboxy.xyz',
+    url: 'https://carboxy.dev',
     siteName: 'CarboxyDev',
     images: [
       {
-        url: 'https://carboxy.xyz/logo.png',
+        url: 'https://carboxy.dev/logo.png',
         width: 1032,
         height: 1032,
         alt: 'CarboxyDev Logo',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: 'CarboxyDev',
     description:
       'Full-stack developer with a passion for clean UI and scalable backend. Currently open to work and remote opportunities.',
-    images: ['https://carboxy.xyz/logo.png'],
+    images: ['https://carboxy.dev/logo.png'],
     creator: '@carboxydev',
   },
   robots: {

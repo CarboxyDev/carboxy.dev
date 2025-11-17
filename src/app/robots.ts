@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://carboxy.xyz/sitemap.xml',
+    sitemap: 'https://carboxy.dev/sitemap.xml',
   };
 }

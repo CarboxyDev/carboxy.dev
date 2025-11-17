@@ -25,7 +25,7 @@ const PROJECTS: Project[] = [
     title: 'Arawn',
     description:
       'Arawn is a production-ready full-stack TypeScript monorepo template with Next.js, NestJS, Turborepo and other modern technologies.',
-    href: 'https://arawn.carboxy.xyz',
+    href: 'https://arawn.carboxy.dev',
     images: ['arawn1.png'],
     techStack: ['TypeScript', 'Next.js', 'NestJS', 'TailwindCSS', 'Turborepo'],
     github: 'https://github.com/CarboxyDev/arawn',
@@ -36,7 +36,7 @@ const PROJECTS: Project[] = [
     title: 'QuizFoundry',
     description:
       'QuizFoundry is a platform for quickly creating and sharing quizzes with the power of AI.',
-    href: 'https://quizfoundry.carboxy.xyz',
+    href: 'https://quizfoundry.carboxy.dev',
     images: ['quizfoundry1.png'],
     techStack: ['TypeScript', 'React', 'Next.js', 'Express', 'TailwindCSS'],
     github: 'https://github.com/CarboxyDev/quizfoundry',
@@ -47,7 +47,7 @@ const PROJECTS: Project[] = [
     title: 'Buy or Bye',
     description:
       'Make smarter purchase decisions. BuyOrBye is a website that helps you make smarter purchase decisions by analyzing your needs and preferences and providing you with a smart AI-powered verdict.',
-    href: 'https://buyorbye.carboxy.xyz/',
+    href: 'https://buyorbye.carboxy.dev/',
     images: ['buyorbye1.png'],
     techStack: ['TypeScript', 'React', 'Next.js', 'TailwindCSS', 'Gemini SDK'],
     github: 'https://github.com/CarboxyDev/buyorbye',

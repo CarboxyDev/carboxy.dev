@@ -7,7 +7,7 @@ export const StructuredSEOData = () => {
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: 'CarboxyDev',
-    url: 'https://carboxy.xyz',
+    url: 'https://carboxy.dev',
     jobTitle: 'Full-Stack Developer',
     sameAs: ['https://github.com/carboxydev', 'https://x.com/carboxydev'],
     description: 'Full-stack AI developer with strong UI/UX skills',

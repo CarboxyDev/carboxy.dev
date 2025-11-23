@@ -24,7 +24,7 @@ const PROJECTS: Project[] = [
     id: 'arawn',
     title: 'Arawn',
     description:
-      'Arawn is a production-ready full-stack TypeScript monorepo template with Next.js, NestJS, Turborepo and other modern technologies.',
+      'Full-stack TypeScript monorepo with Next.js, Fastify, Turborepo. Production-ready auth, database, API docs, and testing. Go from zero to production in minutes.',
     href: 'https://arawn.carboxy.dev',
     images: ['arawn1.png'],
     techStack: ['TypeScript', 'Next.js', 'NestJS', 'TailwindCSS', 'Turborepo'],
@@ -40,17 +40,6 @@ const PROJECTS: Project[] = [
     images: ['quizfoundry1.png'],
     techStack: ['TypeScript', 'React', 'Next.js', 'Express', 'TailwindCSS'],
     github: 'https://github.com/CarboxyDev/quizfoundry',
-    isFeatured: true,
-  },
-  {
-    id: 'buy-or-bye',
-    title: 'Buy or Bye',
-    description:
-      'Make smarter purchase decisions. BuyOrBye is a website that helps you make smarter purchase decisions by analyzing your needs and preferences and providing you with a smart AI-powered verdict.',
-    href: 'https://buyorbye.carboxy.dev/',
-    images: ['buyorbye1.png'],
-    techStack: ['TypeScript', 'React', 'Next.js', 'TailwindCSS', 'Gemini SDK'],
-    github: 'https://github.com/CarboxyDev/buyorbye',
     isFeatured: true,
   },
 ];

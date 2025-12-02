@@ -11,6 +11,17 @@ interface Project {
 
 const PROJECTS: Project[] = [
   {
+    id: 'blitzpack',
+    title: 'Blitzpack',
+    description:
+      'Production-ready TypeScript monorepo with Next.js, Fastify, and Turborepo. Authentication, admin dashboards, API infrastructure, and battle-tested features already configured and working out of the box.',
+    href: 'https://blitzpack.carboxy.dev',
+    images: ['blitzpack1.png'],
+    techStack: ['TypeScript', 'Next.js', 'Fastify', 'Turborepo', 'TailwindCSS'],
+    github: 'https://github.com/CarboxyDev/blitzpack',
+    isFeatured: true,
+  },
+  {
     id: 'adden-ai',
     title: 'AddenAI',
     description:
@@ -20,17 +31,7 @@ const PROJECTS: Project[] = [
     techStack: ['TypeScript', 'React', 'Next.js', 'TailwindCSS', 'FastAPI'],
     isFeatured: true,
   },
-  {
-    id: 'arawn',
-    title: 'Arawn',
-    description:
-      'Full-stack TypeScript monorepo with Next.js, Fastify, Turborepo. Production-ready auth, database, API docs, and testing. Go from zero to production in minutes.',
-    href: 'https://arawn.carboxy.dev',
-    images: ['arawn1.png'],
-    techStack: ['TypeScript', 'Next.js', 'NestJS', 'TailwindCSS', 'Turborepo'],
-    github: 'https://github.com/CarboxyDev/arawn',
-    isFeatured: true,
-  },
+
   {
     id: 'quizfoundry',
     title: 'QuizFoundry',

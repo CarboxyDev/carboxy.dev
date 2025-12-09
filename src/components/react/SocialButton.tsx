@@ -96,6 +96,7 @@ export const SocialButton = ({ site, url, children }: SocialButtonProps) => {
               onClick={handleEmailClick}
               type="button"
               title={site}
+              aria-label={config.tooltipLabel || site}
               className={sharedClasses}
             >
               {buttonContent}
@@ -106,6 +107,7 @@ export const SocialButton = ({ site, url, children }: SocialButtonProps) => {
               target="_blank"
               rel={isHttp ? 'noopener noreferrer' : undefined}
               title={site}
+              aria-label={config.tooltipLabel || site}
               className={sharedClasses}
             >
               {buttonContent}

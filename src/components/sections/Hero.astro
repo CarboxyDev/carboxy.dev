@@ -36,8 +36,8 @@ import { NotebookPen } from 'lucide-react';
   </div>
 
   <div class="relative z-10 mt-10 flex flex-col gap-4 sm:flex-row sm:gap-6">
-    <LearnMoreButton client:load />
-    <AboutMeButton client:load />
+    <LearnMoreButton client:idle />
+    <AboutMeButton client:idle />
   </div>
 
   <div class="relative z-10 mt-24 flex flex-col items-center gap-12">
@@ -71,7 +71,7 @@ import { NotebookPen } from 'lucide-react';
         class="animate-fade-in-up opacity-0"
         style="animation-delay: 2.4s; animation-fill-mode: both;"
       >
-        <SocialButton site="X (Formerly Twitter)" url={LINKS.twitter} client:load>
+        <SocialButton site="X (Formerly Twitter)" url={LINKS.twitter} client:idle>
           <TwitterIcon className="size-5 text-zinc-300" />
         </SocialButton>
       </div>
@@ -79,7 +79,7 @@ import { NotebookPen } from 'lucide-react';
         class="animate-fade-in-up opacity-0"
         style="animation-delay: 2.6s; animation-fill-mode: both;"
       >
-        <SocialButton site="Github" url={LINKS.github} client:load>
+        <SocialButton site="Github" url={LINKS.github} client:idle>
           <GithubIcon className="size-5 text-zinc-300" />
         </SocialButton>
       </div>
@@ -87,7 +87,7 @@ import { NotebookPen } from 'lucide-react';
         class="animate-fade-in-up opacity-0"
         style="animation-delay: 2.8s; animation-fill-mode: both;"
       >
-        <SocialButton site="Email" url={LINKS.email} client:load>
+        <SocialButton site="Email" url={LINKS.email} client:idle>
           <MailIcon className="size-5 text-zinc-300" />
         </SocialButton>
       </div>
@@ -95,7 +95,7 @@ import { NotebookPen } from 'lucide-react';
         class="animate-fade-in-up opacity-0"
         style="animation-delay: 3.0s; animation-fill-mode: both;"
       >
-        <SocialButton site="Blog" url={LINKS.blog} client:load>
+        <SocialButton site="Blog" url={LINKS.blog} client:idle>
           <NotebookPen className="size-5 text-zinc-300" />
         </SocialButton>
       </div>

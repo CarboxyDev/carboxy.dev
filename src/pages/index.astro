@@ -1,11 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "@/components/sections/Hero.astro";
-import { Projects } from "@/components/sections/Projects";
-import { About } from "@/components/sections/About";
+import Projects from "@/components/sections/Projects.astro";
+import About from "@/components/sections/About.astro";
 import { Skills } from "@/components/sections/Skills";
 import { Contact } from "@/components/sections/Contact";
-import { Footer } from "@/components/sections/Footer";
+import Footer from "@/components/sections/Footer.astro";
 ---
 
 <BaseLayout title="CarboxyDev">
@@ -21,14 +21,14 @@ import { Footer } from "@/components/sections/Footer";
       class="animate-fade-in-up"
       style="animation-delay: 0.4s; animation-fill-mode: both;"
     >
-      <Projects client:visible />
+      <Projects />
     </section>
 
     <section
       class="animate-fade-in-up"
       style="animation-delay: 0.6s; animation-fill-mode: both;"
     >
-      <About client:visible />
+      <About />
     </section>
 
     <section
@@ -42,14 +42,14 @@ import { Footer } from "@/components/sections/Footer";
       class="animate-fade-in-up mt-20"
       style="animation-delay: 1.0s; animation-fill-mode: both;"
     >
-      <Contact client:load />
+      <Contact client:visible />
     </section>
 
     <section
       class="animate-fade-in-up mt-20 lg:mt-40"
       style="animation-delay: 1.2s; animation-fill-mode: both;"
     >
-      <Footer client:load />
+      <Footer />
     </section>
   </main>
 </BaseLayout>

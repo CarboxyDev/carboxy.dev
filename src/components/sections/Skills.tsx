@@ -321,7 +321,7 @@ const SkillGrid = () => {
 
         <motion.div
           layout
-          className="relative mx-auto grid max-w-4xl grid-cols-3 justify-items-center gap-8 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8"
+          className="relative mx-auto grid max-w-4xl grid-cols-3 place-content-center justify-items-center gap-8 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8"
         >
           <AnimatePresence mode="popLayout">
             {SKILLS.map((skill, index) => {

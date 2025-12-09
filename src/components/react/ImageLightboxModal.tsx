@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Lightbox from 'yet-another-react-lightbox';
 import Zoom from 'yet-another-react-lightbox/plugins/zoom';
 import 'yet-another-react-lightbox/styles.css';
@@ -14,6 +14,7 @@ export const ImageLightboxModal = ({
 }: ImageLightboxModalProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const slides = images.map((image) => ({
     src: '/' + image,
@@ -26,16 +27,25 @@ export const ImageLightboxModal = ({
       setIsOpen(true);
     };
 
-    const modalElement = document.querySelector('[data-lightbox-modal]');
-    modalElement?.addEventListener('open-lightbox', handleOpen as EventListener);
+    const modalElement = modalRef.current;
+    if (!modalElement) return;
+
+    const container = modalElement.closest('.optimized-image-lightbox');
+    const trigger = container?.querySelector('[data-lightbox-trigger]');
+
+    if (trigger) {
+      trigger.addEventListener('click', handleOpen);
+    }
 
     return () => {
-      modalElement?.removeEventListener('open-lightbox', handleOpen as EventListener);
+      if (trigger) {
+        trigger.removeEventListener('click', handleOpen);
+      }
     };
   }, []);
 
   return (
-    <div data-lightbox-modal>
+    <div ref={modalRef} data-lightbox-modal>
       <Lightbox
         open={isOpen}
         close={() => setIsOpen(false)}

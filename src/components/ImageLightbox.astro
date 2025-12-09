@@ -37,28 +37,5 @@ const { images, alt, className } = Astro.props;
     )}
   </div>
 
-  <ImageLightboxModal images={images} alt={alt} client:only="react" />
+  <ImageLightboxModal images={images} alt={alt} client:load />
 </div>
-
-<script>
-  const initializeLightboxes = () => {
-    const lightboxContainers = document.querySelectorAll('.optimized-image-lightbox');
-
-    lightboxContainers.forEach((container) => {
-      const trigger = container.querySelector('[data-lightbox-trigger]');
-      const modal = container.querySelector('[data-lightbox-modal]');
-
-      if (trigger && modal) {
-        trigger.addEventListener('click', () => {
-          modal.dispatchEvent(new CustomEvent('open-lightbox'));
-        });
-      }
-    });
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeLightboxes);
-  } else {
-    initializeLightboxes();
-  }
-</script>

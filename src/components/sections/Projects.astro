@@ -1,6 +1,6 @@
 ---
 import { GithubIcon } from '@/components/icons/social-icons';
-import OptimizedImageLightbox from '@/components/OptimizedImageLightbox.astro';
+import ImageLightbox from '@/components/ImageLightbox.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
 import { Button } from '@/components/ui/button';
 import { PrimaryButton } from '@/components/ui/primary-button';
@@ -80,7 +80,7 @@ const projects = getFeaturedProjects();
             </div>
 
             <div class="max-w-2xl flex-1">
-              <OptimizedImageLightbox
+              <ImageLightbox
                 images={project.images}
                 alt={`${project.title} preview`}
               />

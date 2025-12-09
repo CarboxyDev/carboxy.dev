@@ -34,7 +34,7 @@ export const SectionHeading = (props: Props) => {
           initial={{ scaleX: 0 }}
           animate={isInView ? { scaleX: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mx-auto mt-4 h-px w-20 bg-gradient-to-r from-transparent via-primary-400 to-transparent"
+          className="mx-auto mt-4 h-px w-20 bg-linear-to-r from-transparent via-primary-400 to-transparent"
         />
       </motion.div>
     </div>

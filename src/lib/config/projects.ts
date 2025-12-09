@@ -14,7 +14,7 @@ const PROJECTS: Project[] = [
     id: 'blitzpack',
     title: 'Blitzpack',
     description:
-      'Production-ready TypeScript monorepo with Next.js, Fastify, and Turborepo. Authentication, admin dashboards, API infrastructure, and battle-tested features already configured and working out of the box.',
+      'TypeScript monorepo template with Next.js, Fastify, and Turborepo. It comes with production-grade infrastructure and battle-tested features working out of the box. It even comes with a CLI generator!',
     href: 'https://blitzpack.carboxy.dev',
     images: ['blitzpack1.png'],
     techStack: ['TypeScript', 'Next.js', 'Fastify', 'Turborepo', 'TailwindCSS'],

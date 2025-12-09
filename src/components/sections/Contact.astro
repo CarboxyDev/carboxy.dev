@@ -3,67 +3,117 @@ import { MailIcon, TwitterIcon } from '@/components/icons/social-icons';
 import SectionHeading from '@/components/SectionHeading.astro';
 import { Button } from '@/components/ui/button';
 import { LINKS } from '@/lib/config/links';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Coffee, Rocket, Sparkles, Zap } from 'lucide-react';
 ---
 
 <section class="pb-32 pt-20 lg:pb-40 lg:pt-32" data-section="contact">
   <div class="space-y-16">
-    <SectionHeading title="Let's Work Together" />
+    <SectionHeading title="Get In Touch" />
 
-    <div class="mx-auto max-w-3xl">
-      <div
-        class="contact-card relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/80 p-12 lg:p-16"
-      >
-        <div class="space-y-10">
-          <div class="space-y-4 text-center">
+    <div class="mx-auto max-w-4xl">
+      <div class="grid gap-6 lg:grid-cols-5 lg:gap-8">
+        <div
+          class="contact-card-main group relative overflow-hidden rounded-xl border border-zinc-800/60 bg-linear-to-br from-zinc-900/40 to-zinc-900/20 p-8 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-zinc-700/80 hover:shadow-xl hover:shadow-primary-400/5 lg:col-span-3 lg:p-10"
+        >
+          <div class="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-primary-500/5 blur-3xl transition-all duration-500 group-hover:bg-primary-500/10" />
+
+          <div class="relative space-y-6">
             <div
-              class="availability-badge mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/50 px-3.5 py-1.5"
+              class="availability-badge inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/50 px-3 py-1.5"
             >
               <div class="relative flex items-center">
                 <div class="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
                 <div class="absolute inset-0 animate-ping rounded-full bg-emerald-400 opacity-40" />
               </div>
               <span class="text-xs font-medium tracking-wide text-emerald-300">
-                AVAILABLE FOR PROJECTS
+                Open to new projects
               </span>
             </div>
 
-            <h3 class="text-2xl font-bold text-white lg:text-3xl">
-              Have a project in mind?
-            </h3>
-            <p class="mx-auto max-w-xl text-base leading-relaxed text-zinc-400 lg:text-lg">
-              I work with teams and founders to build products that matter.
-              If you have something interesting, let's talk.
-            </p>
-          </div>
-
-          <div class="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <div class="button-wrapper-1">
-              <button
-                id="copy-email-btn"
-                class="flex h-12 w-full items-center gap-2.5 rounded-md bg-linear-to-r from-primary-600 via-primary-500 to-primary-600 px-8 font-medium text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-primary-500 hover:via-primary-400 hover:to-primary-500 hover:shadow-xl active:scale-95 sm:w-auto"
-              >
-                <MailIcon className="h-4 w-4" />
-                <span>Send me an email</span>
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </button>
+            <div class="space-y-3">
+              <h3 class="text-2xl font-bold text-white lg:text-3xl">
+                Let's build something
+              </h3>
+              <p class="max-w-lg text-base leading-relaxed text-zinc-400 lg:text-lg">
+                Whether you're a startup looking for a technical co-founder, a team that needs an extra pair of hands, or someone with an idea - I'd love to hear about it. 
+              </p>
+              <p class="max-w-lg text-base leading-relaxed text-zinc-400 lg:text-lg">
+                I'm always interested in hearing about new projects and ideas. 
+              </p>
             </div>
 
-            <div class="button-wrapper-2">
-              <a
-                href={LINKS.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="block w-full sm:w-auto"
-              >
-                <Button
-                  variant="outline"
-                  className="h-12 w-full gap-2.5 border border-zinc-700 bg-zinc-800/50 px-8 font-medium text-zinc-300 transition-all duration-300 hover:border-zinc-600 hover:bg-zinc-800 hover:text-white sm:w-auto"
+            <div class="flex flex-col gap-3 pt-2 sm:flex-row">
+              <div class="button-wrapper-1">
+                <button
+                  id="copy-email-btn"
+                  class="group/btn flex h-12 w-full items-center justify-center gap-2.5 rounded-lg bg-linear-to-r from-primary-600 via-primary-500 to-primary-600 px-6 font-medium text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:from-primary-500 hover:via-primary-400 hover:to-primary-500 hover:shadow-xl active:scale-[0.98] sm:w-auto"
                 >
-                  <TwitterIcon className="h-4 w-4" />
-                  <span>DM on X</span>
-                </Button>
-              </a>
+                  <MailIcon className="h-4 w-4" />
+                  <span>Copy my email</span>
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
+                </button>
+              </div>
+
+              <div class="button-wrapper-2">
+                <a
+                  href={LINKS.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block w-full sm:w-auto"
+                >
+                  <Button
+                    variant="outline"
+                    className="h-12 w-full gap-2.5 rounded-lg border border-zinc-700/70 bg-zinc-800/50 px-6 font-medium text-zinc-300 transition-all duration-300 hover:border-zinc-600 hover:bg-zinc-700/50 hover:text-white sm:w-auto"
+                  >
+                    <TwitterIcon className="h-4 w-4" />
+                    <span>Message on X</span>
+                  </Button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-cards-side flex flex-col gap-6 lg:col-span-2 lg:gap-8">
+          <div
+            class="contact-card-item group rounded-xl border border-zinc-800/60 bg-linear-to-br from-zinc-900/40 to-zinc-900/20 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-zinc-700/80 hover:shadow-xl hover:shadow-primary-400/5"
+          >
+            <div class="flex items-start gap-4">
+              <div class="rounded-lg border border-primary-400/30 bg-linear-to-br from-primary-400/20 to-primary-500/10 p-2.5 transition-all duration-300 group-hover:border-primary-400/50 group-hover:from-primary-400/30 group-hover:to-primary-500/20">
+                <Zap className="h-5 w-5 text-primary-400" />
+              </div>
+              <div>
+                <h4 class="font-semibold text-white">Quick response</h4>
+                <p class="mt-1 text-sm text-zinc-400">I reply within 24 hours and can start on projects quickly.</p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="contact-card-item group rounded-xl border border-zinc-800/60 bg-linear-to-br from-zinc-900/40 to-zinc-900/20 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-zinc-700/80 hover:shadow-xl hover:shadow-primary-400/5"
+          >
+            <div class="flex items-start gap-4">
+              <div class="rounded-lg border border-primary-400/30 bg-linear-to-br from-primary-400/20 to-primary-500/10 p-2.5 transition-all duration-300 group-hover:border-primary-400/50 group-hover:from-primary-400/30 group-hover:to-primary-500/20">
+                <Rocket className="h-5 w-5 text-primary-400" />
+              </div>
+              <div>
+                <h4 class="font-semibold text-white">End-to-end delivery</h4>
+                <p class="mt-1 text-sm text-zinc-400">From design to deployment, I handle the full stack.</p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="contact-card-item group rounded-xl border border-zinc-800/60 bg-linear-to-br from-zinc-900/40 to-zinc-900/20 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-zinc-700/80 hover:shadow-xl hover:shadow-primary-400/5"
+          >
+            <div class="flex items-start gap-4">
+              <div class="rounded-lg border border-primary-400/30 bg-linear-to-br from-primary-400/20 to-primary-500/10 p-2.5 transition-all duration-300 group-hover:border-primary-400/50 group-hover:from-primary-400/30 group-hover:to-primary-500/20">
+                <Coffee className="h-5 w-5 text-primary-400" />
+              </div>
+              <div>
+                <h4 class="font-semibold text-white">No corporate BS</h4>
+                <p class="mt-1 text-sm text-zinc-400">Straightforward communication, honest timelines.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -100,7 +150,7 @@ import { ArrowRight } from 'lucide-react';
 </script>
 
 <style>
-  .contact-card {
+  .contact-card-main {
     opacity: 0;
     transform: translateY(30px);
     animation: fade-in-up 0.6s ease-out forwards;
@@ -109,25 +159,50 @@ import { ArrowRight } from 'lucide-react';
   .availability-badge {
     opacity: 0;
     transform: scale(0.9);
-    animation: fade-in-scale 0.5s ease-out 0.1s forwards;
+    animation: fade-in-scale 0.5s ease-out 0.2s forwards;
   }
 
   .button-wrapper-1 {
     opacity: 0;
     transform: translateY(20px);
-    animation: fade-in-up 0.5s ease-out 0.2s forwards;
+    animation: fade-in-up 0.5s ease-out 0.3s forwards;
   }
 
   .button-wrapper-2 {
     opacity: 0;
     transform: translateY(20px);
-    animation: fade-in-up 0.5s ease-out 0.3s forwards;
+    animation: fade-in-up 0.5s ease-out 0.4s forwards;
+  }
+
+  .contact-card-item {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: fade-in-right 0.5s ease-out forwards;
+  }
+
+  .contact-card-item:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+
+  .contact-card-item:nth-child(2) {
+    animation-delay: 0.35s;
+  }
+
+  .contact-card-item:nth-child(3) {
+    animation-delay: 0.5s;
   }
 
   @keyframes fade-in-up {
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-right {
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 

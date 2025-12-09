@@ -1,0 +1,64 @@
+---
+import { Image } from 'astro:assets';
+import { ImageLightboxModal } from '@/components/react/ImageLightboxModal';
+
+interface Props {
+  images: string[];
+  alt: string;
+  className?: string;
+}
+
+const { images, alt, className } = Astro.props;
+---
+
+<div class="optimized-image-lightbox">
+  <div
+    class:list={[
+      'group relative cursor-zoom-in overflow-hidden rounded-lg',
+      className
+    ]}
+    data-lightbox-trigger
+  >
+    <div class="absolute inset-0 z-10 bg-black/0 transition-all duration-300 group-hover:bg-black/20"></div>
+    <div class="absolute inset-0 z-20 flex items-center justify-center opacity-0 transition-all duration-300 group-hover:opacity-100">
+      <div class="rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+        Click to preview
+      </div>
+    </div>
+    {images[0] && (
+      <Image
+        src={`/${images[0]}`}
+        alt={alt}
+        width={800}
+        height={600}
+        class="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+        loading="lazy"
+      />
+    )}
+  </div>
+
+  <ImageLightboxModal images={images} alt={alt} client:only="react" />
+</div>
+
+<script>
+  const initializeLightboxes = () => {
+    const lightboxContainers = document.querySelectorAll('.optimized-image-lightbox');
+
+    lightboxContainers.forEach((container) => {
+      const trigger = container.querySelector('[data-lightbox-trigger]');
+      const modal = container.querySelector('[data-lightbox-modal]');
+
+      if (trigger && modal) {
+        trigger.addEventListener('click', () => {
+          modal.dispatchEvent(new CustomEvent('open-lightbox'));
+        });
+      }
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeLightboxes);
+  } else {
+    initializeLightboxes();
+  }
+</script>

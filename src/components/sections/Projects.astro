@@ -1,6 +1,6 @@
 ---
 import { GithubIcon } from '@/components/icons/social-icons';
-import { ImageLightbox } from '@/components/react/ImageLightbox';
+import OptimizedImageLightbox from '@/components/OptimizedImageLightbox.astro';
 import SectionHeading from '@/components/SectionHeading.astro';
 import { Button } from '@/components/ui/button';
 import { PrimaryButton } from '@/components/ui/primary-button';
@@ -80,10 +80,9 @@ const projects = getFeaturedProjects();
             </div>
 
             <div class="max-w-2xl flex-1">
-              <ImageLightbox
+              <OptimizedImageLightbox
                 images={project.images}
                 alt={`${project.title} preview`}
-                client:visible
               />
             </div>
           </article>

@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import Lightbox from 'yet-another-react-lightbox';
 import Zoom from 'yet-another-react-lightbox/plugins/zoom';
 import 'yet-another-react-lightbox/styles.css';
@@ -8,12 +8,14 @@ interface ImageLightboxProps {
   images: string[];
   alt: string;
   className?: string;
+  previewImage?: ReactNode;
 }
 
 export const ImageLightbox = ({
   images,
   alt,
   className,
+  previewImage,
 }: ImageLightboxProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -41,13 +43,17 @@ export const ImageLightbox = ({
             Click to preview
           </div>
         </div>
-        {images[0] && (
+        {previewImage ? (
+          previewImage
+        ) : images[0] ? (
           <img
             src={'/' + images[0]}
             alt={alt}
+            loading="lazy"
+            decoding="async"
             className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
           />
-        )}
+        ) : null}
       </div>
 
       <Lightbox

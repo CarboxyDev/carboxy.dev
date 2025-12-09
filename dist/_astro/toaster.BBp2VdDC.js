@@ -1,0 +1,1 @@
+import{j as o}from"./jsx-runtime.D_zvdyIk.js";import{T as t}from"./index.DWHFgm75.js";import"./index.DP23ewiS.js";import"./index.BVfS4mc2.js";import"./index.BvqVbXGs.js";const m=()=>o.jsx(t,{position:"top-right",toastOptions:{style:{background:"#18181b",border:"1px solid #27272a",color:"#fafafa"}}});export{m as Toaster};

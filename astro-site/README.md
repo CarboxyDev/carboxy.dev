@@ -1,3 +1,0 @@
-# CarboxyDev
-
-My personal website :)

@@ -31,7 +31,6 @@ const PROJECTS: Project[] = [
     techStack: ['TypeScript', 'React', 'Next.js', 'TailwindCSS', 'FastAPI'],
     isFeatured: true,
   },
-
   {
     id: 'quizfoundry',
     title: 'QuizFoundry',

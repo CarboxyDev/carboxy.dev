@@ -8,7 +8,6 @@ import {
   NodejsLogo,
   PostgreSQLLogo,
   ReactLogo,
-  SupabaseLogo,
   TailwindLogo,
   TypescriptLogo,
 } from '@/components/icons/brand-icons';
@@ -21,7 +20,6 @@ import {
 import { cn } from '@/lib/utils';
 import { animated, useSpring } from '@react-spring/web';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
-import { ChevronDownIcon } from 'lucide-react';
 import React, { cloneElement } from 'react';
 
 type SkillCategory = 'frontend' | 'backend' | 'tools' | 'design';
@@ -85,25 +83,11 @@ const SKILLS: Skill[] = [
     categories: ['backend'],
   },
   {
-    label: 'Supabase',
-    icon: <SupabaseLogo />,
-    gradient: 'from-green-600/20 to-emerald-500/20',
-    hoverColor: 'from-green-600/30 to-emerald-500/30',
-    categories: ['backend'],
-  },
-  {
     label: 'PostgreSQL',
     icon: <PostgreSQLLogo />,
     gradient: 'from-blue-600/20 to-blue-500/20',
     hoverColor: 'from-blue-600/30 to-blue-500/30',
     categories: ['backend'],
-  },
-  {
-    label: 'Git',
-    icon: <GitLogo />,
-    gradient: 'from-orange-500/20 to-red-500/20',
-    hoverColor: 'from-orange-500/30 to-red-500/30',
-    categories: ['tools'],
   },
   {
     label: 'Docker',
@@ -128,32 +112,19 @@ interface MinorSkill {
 
 const MINOR_SKILLS: MinorSkill[] = [
   { label: 'React Query', categories: ['frontend'] },
-  { label: 'Axios', categories: ['frontend'] },
   { label: 'Zustand', categories: ['frontend'] },
-  { label: 'Radix UI', categories: ['frontend'] },
   { label: 'Shadcn/ui', categories: ['frontend'] },
-  { label: 'PostCSS', categories: ['frontend'] },
-  { label: 'Nivo', categories: ['frontend'] },
   { label: 'Recharts', categories: ['frontend'] },
-  { label: 'NextAuth', categories: ['frontend'] },
-  { label: 'Framer Motion', categories: ['frontend'] },
+  { label: 'Better Auth', categories: ['frontend'] },
   { label: 'React Hook Form', categories: ['frontend'] },
   { label: 'TanStack Table', categories: ['frontend'] },
   { label: 'Zod', categories: ['frontend', 'backend'] },
   { label: 'Prisma', categories: ['backend'] },
-  { label: 'OpenRouter', categories: ['backend'] },
-  { label: 'Google AI SDK', categories: ['backend'] },
-  { label: 'Socket.io', categories: ['backend'] },
+  { label: 'Supabase', categories: ['backend'] },
   { label: 'Vercel', categories: ['tools'] },
   { label: 'GCP', categories: ['tools'] },
   { label: 'GitHub Actions', categories: ['tools'] },
-  { label: 'Supabase CLI', categories: ['tools'] },
-  { label: 'React DevTools', categories: ['tools'] },
-  { label: 'Postman', categories: ['tools'] },
-  { label: 'Cursor', categories: ['tools'] },
-  { label: 'Bash/Zsh', categories: ['tools'] },
-  { label: 'v0', categories: ['design'] },
-  { label: 'Canva', categories: ['design'] },
+  { label: 'Git', categories: ['tools'] },
 ];
 
 const CATEGORY_COLORS = {
@@ -255,22 +226,6 @@ const SkillCard = ({
 
 const SkillGrid = () => {
   const [activeFilter, setActiveFilter] = React.useState<string | null>(null);
-  const [showMinorSkills, setShowMinorSkills] = React.useState(false);
-  const minorSkillsRef = React.useRef<HTMLDivElement>(null);
-  const [minorSkillsHeight, setMinorSkillsHeight] = React.useState<
-    number | null
-  >(null);
-
-  React.useEffect(() => {
-    if (showMinorSkills && minorSkillsRef.current) {
-      setTimeout(() => {
-        if (minorSkillsRef.current) {
-          const height = minorSkillsRef.current.scrollHeight;
-          setMinorSkillsHeight(height);
-        }
-      }, 50);
-    }
-  }, [showMinorSkills]);
 
   const categoryGroups = React.useMemo(() => {
     const groups: Record<SkillCategory, Skill[]> = {
@@ -402,131 +357,86 @@ const SkillGrid = () => {
         </motion.div>
       </div>
 
-      <div className="mt-16 flex flex-col items-center">
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={() => setShowMinorSkills(!showMinorSkills)}
-          className="cursor-pointer group flex items-center gap-2 rounded-full border border-zinc-700/40 bg-zinc-800/50 px-6 py-3 text-sm font-medium text-zinc-300 transition-all duration-300 hover:border-zinc-600/60 hover:bg-zinc-700/50 focus:outline-none focus:ring-2 focus:ring-primary-400/50 focus:ring-offset-2 focus:ring-offset-zinc-900"
-        >
-          <span>{showMinorSkills ? 'Hide' : 'Show'} Additional Skills</span>
-          <motion.div
-            animate={{ rotate: showMinorSkills ? 180 : 0 }}
-            transition={{ duration: 0.3 }}
-            className="text-zinc-500"
-          >
-            <ChevronDownIcon className="size-4" />
-          </motion.div>
-        </motion.button>
-
-        <div
-          className="relative overflow-hidden"
-          style={{
-            height: showMinorSkills
-              ? 'auto'
-              : minorSkillsHeight
-                ? `${minorSkillsHeight + 32}px`
-                : 'auto',
-            transition: showMinorSkills
-              ? 'none'
-              : 'height 0.5s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s',
-          }}
-        >
-          <AnimatePresence>
-            {showMinorSkills && (
-              <motion.div
-                ref={minorSkillsRef}
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -15, scale: 0.98 }}
-                transition={{
-                  duration: 0.5,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                  opacity: { duration: 0.3 },
-                  scale: { duration: 0.4 },
-                }}
-                className="mt-8 w-full max-w-4xl"
-              >
-                <div className="mb-6 text-center">
-                  <h3 className="text-lg font-semibold text-zinc-200">
-                    Additional Technologies & Tools
-                  </h3>
-                  <p className="mt-2 text-sm text-zinc-400">
-                    Libraries, frameworks and tools I work with regularly
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap justify-center gap-3">
-                  {MINOR_SKILLS.map((skill, index) => {
-                    const isVisible =
-                      !activeFilter ||
-                      skill.categories.includes(activeFilter as SkillCategory);
-
-                    const primaryCategory = skill.categories.includes(
-                      'frontend'
-                    )
-                      ? 'frontend'
-                      : skill.categories.includes('backend')
-                        ? 'backend'
-                        : skill.categories.includes('tools')
-                          ? 'tools'
-                          : 'design';
-
-                    return (
-                      <motion.div
-                        key={skill.label}
-                        initial={{ opacity: 0, scale: 0.8, y: 15 }}
-                        animate={{
-                          opacity: isVisible ? 1 : 0.3,
-                          scale: isVisible ? 1 : 0.95,
-                          y: 0,
-                        }}
-                        exit={{ opacity: 0, scale: 0.8, y: -10 }}
-                        whileHover={
-                          isVisible
-                            ? {
-                                scale: 1.05,
-                                y: -2,
-                                transition: { duration: 0.2, ease: 'easeOut' },
-                              }
-                            : {}
-                        }
-                        whileTap={
-                          isVisible
-                            ? {
-                                scale: 0.98,
-                                transition: { duration: 0.1 },
-                              }
-                            : {}
-                        }
-                        transition={{
-                          delay: index * 0.02,
-                          duration: 0.4,
-                          ease: [0.25, 0.46, 0.45, 0.94],
-                        }}
-                        className={cn(
-                          'group relative cursor-pointer overflow-hidden rounded-lg border border-zinc-700/40 bg-zinc-800/50 px-3 py-2 text-sm font-medium text-zinc-300 transition-all duration-300 hover:border-zinc-600/60 hover:bg-zinc-700/50 hover:text-zinc-200 hover:shadow-lg',
-                          !isVisible && 'cursor-default grayscale',
-                          isVisible && CATEGORY_COLORS[primaryCategory]
-                        )}
-                      >
-                        <div
-                          className={cn(
-                            'absolute inset-0 opacity-0 transition-opacity duration-300',
-                            isVisible && 'group-hover:opacity-100',
-                            OVERLAY_COLORS[primaryCategory]
-                          )}
-                        />
-                        <span className="relative z-10">{skill.label}</span>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        className="mt-20 w-full max-w-4xl mx-auto"
+      >
+        <div className="mb-8 text-center">
+          <div className="relative inline-flex items-center gap-3">
+            <div className="h-px w-12 bg-linear-to-r from-transparent to-zinc-700" />
+            <h3 className="text-base font-medium text-zinc-400">
+              Additional Technologies & Tools
+            </h3>
+            <div className="h-px w-12 bg-linear-to-l from-transparent to-zinc-700" />
+          </div>
         </div>
-      </div>
+
+        <div className="flex flex-wrap justify-center gap-3">
+          {MINOR_SKILLS.map((skill, index) => {
+            const isVisible =
+              !activeFilter ||
+              skill.categories.includes(activeFilter as SkillCategory);
+
+            const primaryCategory = skill.categories.includes('frontend')
+              ? 'frontend'
+              : skill.categories.includes('backend')
+                ? 'backend'
+                : skill.categories.includes('tools')
+                  ? 'tools'
+                  : 'design';
+
+            return (
+              <motion.div
+                key={skill.label}
+                initial={{ opacity: 0, scale: 0.8, y: 15 }}
+                animate={{
+                  opacity: isVisible ? 1 : 0.3,
+                  scale: isVisible ? 1 : 0.95,
+                  y: 0,
+                }}
+                whileHover={
+                  isVisible
+                    ? {
+                        scale: 1.05,
+                        y: -2,
+                        transition: { duration: 0.2, ease: 'easeOut' },
+                      }
+                    : {}
+                }
+                whileTap={
+                  isVisible
+                    ? {
+                        scale: 0.98,
+                        transition: { duration: 0.1 },
+                      }
+                    : {}
+                }
+                transition={{
+                  delay: index * 0.03,
+                  duration: 0.4,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+                className={cn(
+                  'group relative overflow-hidden rounded-lg border border-zinc-700/40 bg-zinc-800/50 px-3.5 py-2 text-sm font-medium text-zinc-300 transition-all duration-300 hover:border-zinc-600/60 hover:bg-zinc-700/50 hover:text-zinc-200 hover:shadow-lg',
+                  !isVisible && 'cursor-default grayscale',
+                  isVisible && CATEGORY_COLORS[primaryCategory]
+                )}
+              >
+                <div
+                  className={cn(
+                    'absolute inset-0 opacity-0 transition-opacity duration-300',
+                    isVisible && 'group-hover:opacity-100',
+                    OVERLAY_COLORS[primaryCategory]
+                  )}
+                />
+                <span className="relative z-10">{skill.label}</span>
+              </motion.div>
+            );
+          })}
+        </div>
+      </motion.div>
     </div>
   );
 };

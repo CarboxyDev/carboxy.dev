@@ -1,0 +1,141 @@
+---
+import { MailIcon, TwitterIcon } from '@/components/icons/social-icons';
+import SectionHeading from '@/components/SectionHeading.astro';
+import { Button } from '@/components/ui/button';
+import { PrimaryButton } from '@/components/ui/primary-button';
+import { LINKS } from '@/lib/config/links';
+import { ArrowRight } from 'lucide-react';
+---
+
+<section class="pb-32 pt-20 lg:pb-40 lg:pt-32" data-section="contact">
+  <div class="space-y-16">
+    <SectionHeading title="Let's Work Together" />
+
+    <div class="mx-auto max-w-3xl">
+      <div
+        class="contact-card relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/80 p-12 lg:p-16"
+      >
+        <div class="space-y-10">
+          <div class="space-y-4 text-center">
+            <div
+              class="availability-badge mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/50 px-3.5 py-1.5"
+            >
+              <div class="relative flex items-center">
+                <div class="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+                <div class="absolute inset-0 animate-ping rounded-full bg-emerald-400 opacity-40" />
+              </div>
+              <span class="text-xs font-medium tracking-wide text-emerald-300">
+                AVAILABLE FOR PROJECTS
+              </span>
+            </div>
+
+            <h3 class="text-2xl font-bold text-white lg:text-3xl">
+              Have a project in mind?
+            </h3>
+            <p class="mx-auto max-w-xl text-base leading-relaxed text-zinc-400 lg:text-lg">
+              I work with teams and founders to build products that matter.
+              If you have something interesting, let's talk.
+            </p>
+          </div>
+
+          <div class="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <div class="button-wrapper-1">
+              <button
+                id="copy-email-btn"
+                class="flex h-12 w-full items-center gap-2.5 rounded-md bg-gradient-to-r from-primary-600 via-primary-500 to-primary-600 px-8 font-medium text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-primary-500 hover:via-primary-400 hover:to-primary-500 hover:shadow-xl active:scale-95 sm:w-auto"
+              >
+                <MailIcon className="h-4 w-4" />
+                <span>Send me an email</span>
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
+            </div>
+
+            <div class="button-wrapper-2">
+              <a
+                href={LINKS.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full sm:w-auto"
+              >
+                <Button
+                  variant="outline"
+                  className="h-12 w-full gap-2.5 border border-zinc-700 bg-zinc-800/50 px-8 font-medium text-zinc-300 transition-all duration-300 hover:border-zinc-600 hover:bg-zinc-800 hover:text-white sm:w-auto"
+                >
+                  <TwitterIcon className="h-4 w-4" />
+                  <span>DM on X</span>
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { copyEmailToClipboard } from '@/lib/clipboard';
+  import { LINKS } from '@/lib/config/links';
+
+  const copyEmailBtn = document.getElementById('copy-email-btn');
+
+  if (copyEmailBtn) {
+    copyEmailBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+
+      try {
+        const email = await copyEmailToClipboard(LINKS.email);
+
+        const { toast } = await import('sonner');
+        toast.success('Email copied to clipboard!', {
+          description: email,
+        });
+      } catch {
+        const { toast } = await import('sonner');
+        toast.error('Failed to copy email', {
+          description: 'Please try again',
+        });
+      }
+    });
+  }
+</script>
+
+<style>
+  .contact-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fade-in-up 0.6s ease-out forwards;
+  }
+
+  .availability-badge {
+    opacity: 0;
+    transform: scale(0.9);
+    animation: fade-in-scale 0.5s ease-out 0.1s forwards;
+  }
+
+  .button-wrapper-1 {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fade-in-up 0.5s ease-out 0.2s forwards;
+  }
+
+  .button-wrapper-2 {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fade-in-up 0.5s ease-out 0.3s forwards;
+  }
+
+  @keyframes fade-in-up {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-scale {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>

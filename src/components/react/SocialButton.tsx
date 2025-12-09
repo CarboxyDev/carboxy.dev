@@ -1,3 +1,4 @@
+import { copyEmailToClipboard } from '@/lib/clipboard';
 import { cloneElement, type MouseEvent, type ReactElement } from 'react';
 import { toast } from 'sonner';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
@@ -56,10 +57,9 @@ export const SocialButton = ({ site, url, children }: SocialButtonProps) => {
 
   const handleEmailClick = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const email = url.replace('mailto:', '');
 
     try {
-      await navigator.clipboard.writeText(email);
+      const email = await copyEmailToClipboard(url);
       toast.success('Email copied to clipboard!', {
         description: email,
       });

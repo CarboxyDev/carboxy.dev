@@ -4,7 +4,7 @@ import Hero from "@/components/sections/Hero.astro";
 import Projects from "@/components/sections/Projects.astro";
 import About from "@/components/sections/About.astro";
 import { Skills } from "@/components/sections/Skills";
-import { Contact } from "@/components/sections/Contact";
+import Contact from "@/components/sections/Contact.astro";
 import Footer from "@/components/sections/Footer.astro";
 ---
 
@@ -42,7 +42,7 @@ import Footer from "@/components/sections/Footer.astro";
       class="animate-fade-in-up mt-20"
       style="animation-delay: 1.0s; animation-fill-mode: both;"
     >
-      <Contact client:visible />
+      <Contact />
     </section>
 
     <section

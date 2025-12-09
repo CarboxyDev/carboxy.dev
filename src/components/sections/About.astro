@@ -1,7 +1,8 @@
 ---
-import { JourneyTimeline } from '@/components/react/JourneyTimeline';
+
 import SectionHeading from '@/components/SectionHeading.astro';
 import SkillsList from '@/components/SkillsList.astro';
+import JourneyTimeline from '@/components/JourneyTimeline.astro';
 import { cn } from '@/lib/utils';
 import { Code2, MapPin } from 'lucide-react';
 ---
@@ -18,11 +19,11 @@ import { Code2, MapPin } from 'lucide-react';
         <div class="about-cards-grid grid gap-6 md:auto-rows-min md:grid-cols-2 md:grid-rows-[auto_auto_auto] lg:gap-8">
           <!-- What I Do Card -->
           <div
-            class="about-card group rounded-xl border border-zinc-800/60 bg-gradient-to-br from-zinc-900/40 to-zinc-900/20 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-zinc-700/80 hover:bg-gradient-to-br hover:from-zinc-900/50 hover:to-zinc-900/30 hover:shadow-xl hover:shadow-primary-400/5 md:row-span-2"
-          >
+            class="about-card group rounded-xl border border-zinc-800/60 bg-linear-to-br from-zinc-900/40 to-zinc-900/20 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-zinc-700/80 hover:bg-linear-to-br hover:from-zinc-900/50 hover:to-zinc-900/30 hover:shadow-xl hover:shadow-primary-400/5 md:row-span-2"
+            >
             <div class="mb-6">
-              <h3 class="flex items-center gap-3 bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-xl font-bold text-transparent transition-all duration-300 group-hover:from-white group-hover:to-primary-200">
-                <div class="rounded-lg border border-primary-400/30 bg-gradient-to-br from-primary-400/20 to-primary-500/10 p-2 transition-all duration-300 group-hover:border-primary-400/50 group-hover:from-primary-400/30 group-hover:to-primary-500/20">
+              <h3 class="flex items-center gap-3 bg-linear-to-r from-white to-zinc-300 bg-clip-text text-xl font-bold text-transparent transition-all duration-300 group-hover:from-white group-hover:to-primary-200">
+                <div class="rounded-lg border border-primary-400/30 bg-linear-to-br from-primary-400/20 to-primary-500/10 p-2 transition-all duration-300 group-hover:border-primary-400/50 group-hover:from-primary-400/30 group-hover:to-primary-500/20">
                   <Code2 className="h-5 w-5 text-primary-400" />
                 </div>
                 What I Do
@@ -33,17 +34,17 @@ import { Code2, MapPin } from 'lucide-react';
 
           <!-- My Journey Card -->
           <div
-            class="about-card group rounded-xl border border-zinc-800/60 bg-gradient-to-br from-zinc-900/40 to-zinc-900/20 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-zinc-700/80 hover:bg-gradient-to-br hover:from-zinc-900/50 hover:to-zinc-900/30 hover:shadow-xl hover:shadow-primary-400/5 md:row-span-2"
+            class="about-card group rounded-xl border border-zinc-800/60 bg-linear-to-br from-zinc-900/40 to-zinc-900/20 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-zinc-700/80 hover:bg-linear-to-br hover:from-zinc-900/50 hover:to-zinc-900/30 hover:shadow-xl hover:shadow-primary-400/5 md:row-span-2"
           >
             <div class="mb-6">
-              <h3 class="flex items-center gap-3 bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-xl font-bold text-transparent transition-all duration-300 group-hover:from-white group-hover:to-primary-200">
-                <div class="rounded-lg border border-primary-400/30 bg-gradient-to-br from-primary-400/20 to-primary-500/10 p-2 transition-all duration-300 group-hover:border-primary-400/50 group-hover:from-primary-400/30 group-hover:to-primary-500/20">
+              <h3 class="flex items-center gap-3 bg-linear-to-r from-white to-zinc-300 bg-clip-text text-xl font-bold text-transparent transition-all duration-300 group-hover:from-white group-hover:to-primary-200">
+                <div class="rounded-lg border border-primary-400/30 bg-linear-to-br from-primary-400/20 to-primary-500/10 p-2 transition-all duration-300 group-hover:border-primary-400/50 group-hover:from-primary-400/30 group-hover:to-primary-500/20">
                   <MapPin className="h-5 w-5 text-primary-400" />
                 </div>
                 My Journey
               </h3>
             </div>
-            <JourneyTimeline client:visible />
+            <JourneyTimeline />
           </div>
         </div>
       </div>

@@ -12,7 +12,6 @@ import {
   TailwindLogo,
   TypescriptLogo,
 } from '@/components/icons/brand-icons';
-import { SectionHeading } from '@/components/react/SectionHeading';
 import {
   Tooltip,
   TooltipContent,
@@ -23,7 +22,7 @@ import { cn } from '@/lib/utils';
 import { animated, useSpring } from '@react-spring/web';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { ChevronDownIcon } from 'lucide-react';
-import React from 'react';
+import React, { cloneElement } from 'react';
 
 type SkillCategory = 'frontend' | 'backend' | 'tools' | 'design';
 
@@ -190,15 +189,15 @@ const SkillCard = ({
       whileTap={isVisible ? { scale: 0.98 } : {}}
       className={cn(
         'group relative size-20 rounded-2xl border border-zinc-700/40 backdrop-blur-sm transition-all duration-300',
-        `bg-gradient-to-br ${skill.gradient}`,
+        `bg-linear-to-br ${skill.gradient}`,
         !isVisible && 'grayscale',
         isVisible ? 'cursor-pointer hover:border-zinc-600/60' : 'cursor-default'
       )}
     >
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-zinc-900/90 to-zinc-800/70" />
+      <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-zinc-900/90 to-zinc-800/70" />
 
       <div className="relative flex size-full items-center justify-center">
-        {React.cloneElement(skill.icon, {
+        {cloneElement(skill.icon as React.ReactElement<{ className?: string }>, {
           className: cn(
             'size-8 transition-all duration-300 ease-out',
             isVisible && 'group-hover:drop-shadow-lg'
@@ -208,7 +207,7 @@ const SkillCard = ({
 
       <div
         className={cn(
-          'absolute inset-0 rounded-2xl bg-gradient-to-t via-transparent to-transparent opacity-0 transition-opacity duration-300',
+          'absolute inset-0 rounded-2xl bg-linear-to-t via-transparent to-transparent opacity-0 transition-opacity duration-300',
           `${skill.hoverColor} from-transparent`,
           isVisible && 'group-hover:opacity-100'
         )}
@@ -224,17 +223,17 @@ const SkillCard = ({
             <TooltipTrigger>{cardContent}</TooltipTrigger>
             <TooltipContent
               side="top"
-              className="border-zinc-600/50 bg-gradient-to-br from-zinc-800/95 to-zinc-900/95 text-zinc-100 shadow-xl backdrop-blur-sm"
+              className="border-zinc-600/50 bg-linear-to-br from-zinc-800/95 to-zinc-900/95 text-zinc-100 shadow-xl backdrop-blur-sm"
             >
               <div className="flex items-center gap-3 px-1 py-0.5">
                 <div
                   className={cn(
                     'flex size-8 items-center justify-center rounded-lg',
-                    `bg-gradient-to-br ${skill.gradient}`
+                    `bg-linear-to-br ${skill.gradient}`
                   )}
                 >
-                  <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-zinc-900/60 to-zinc-800/40" />
-                  {React.cloneElement(skill.icon, {
+                  <div className="absolute inset-0 rounded-lg bg-linear-to-br from-zinc-900/60 to-zinc-800/40" />
+                  {React.cloneElement(skill.icon as React.ReactElement<{ className?: string }>, {
                     className: 'relative size-4 text-white',
                   })}
                 </div>
@@ -408,7 +407,7 @@ const SkillGrid = () => {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={() => setShowMinorSkills(!showMinorSkills)}
-          className="group flex items-center gap-2 rounded-full border border-zinc-700/40 bg-zinc-800/50 px-6 py-3 text-sm font-medium text-zinc-300 transition-all duration-300 hover:border-zinc-600/60 hover:bg-zinc-700/50 focus:outline-none focus:ring-2 focus:ring-primary-400/50 focus:ring-offset-2 focus:ring-offset-zinc-900"
+          className="cursor-pointer group flex items-center gap-2 rounded-full border border-zinc-700/40 bg-zinc-800/50 px-6 py-3 text-sm font-medium text-zinc-300 transition-all duration-300 hover:border-zinc-600/60 hover:bg-zinc-700/50 focus:outline-none focus:ring-2 focus:ring-primary-400/50 focus:ring-offset-2 focus:ring-offset-zinc-900"
         >
           <span>{showMinorSkills ? 'Hide' : 'Show'} Additional Skills</span>
           <motion.div
@@ -547,7 +546,32 @@ export const Skills = () => {
         transition={{ duration: 0.8 }}
         className="mb-16"
       >
-        <SectionHeading title="What I Work With" />
+        <div className="relative mb-16 flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={titleIsInView ? { opacity: 1, y: 0 } : {}}
+            transition={{
+              duration: 0.6,
+              ease: 'easeOut',
+            }}
+            className="relative text-center"
+          >
+            <h2
+              className={cn(
+                'text-3xl font-semibold tracking-tight text-zinc-100 md:text-5xl font-heading'
+              )}
+            >
+              What I Work With
+            </h2>
+
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={titleIsInView ? { scaleX: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mx-auto mt-4 h-px w-20 bg-linear-to-r from-transparent via-primary-400 to-transparent"
+            />
+          </motion.div>
+        </div>
       </motion.div>
 
       <motion.div

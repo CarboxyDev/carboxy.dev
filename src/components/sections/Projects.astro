@@ -2,7 +2,6 @@
 import { GithubIcon } from '@/components/icons/social-icons';
 import ImageLightbox from '@/components/ImageLightbox.astro';
 import { getFeaturedProjects } from '@/lib/config/projects';
-import { cn } from '@/lib/utils';
 import { ExternalLink } from 'lucide-react';
 
 const projects = getFeaturedProjects();
@@ -14,29 +13,25 @@ const projects = getFeaturedProjects();
   </h2>
 
   <div class="mt-12">
-    <div class="flex flex-col gap-y-20 lg:gap-y-28">
+    <div class="flex flex-col">
       {projects.map((project, index) => {
-        const align = index % 2 === 0 ? 'left' : 'right';
-
         return (
           <article
-            class={cn(
-              'group/card flex flex-col gap-8 lg:gap-12',
-              align === 'left' ? 'lg:flex-row' : 'lg:flex-row-reverse'
-            )}
+            class="group/card flex flex-col gap-6 py-16 lg:py-20 first:pt-0 border-t border-border/50 first:border-t-0 animate-fade-in-up"
+            style={`animation-delay: ${index * 150}ms`}
           >
-            <div
-              class={cn(
-                'flex-1 space-y-4',
-                align === 'left' ? 'lg:mr-4' : 'lg:ml-4'
-              )}
-            >
-              <div class="flex items-center gap-3">
-                <span class="inline-flex items-center rounded-full border border-border bg-card/50 px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
-                  {project.type}
-                </span>
+            <!-- Image -->
+            <div class="w-full">
+              <div class="overflow-hidden rounded-xl border border-border/50 bg-card/30 transition-all duration-300 group-hover/card:border-border group-hover/card:shadow-lg group-hover/card:shadow-black/5">
+                <ImageLightbox
+                  images={project.images}
+                  alt={`${project.title} preview`}
+                />
               </div>
+            </div>
 
+            <!-- Content -->
+            <div class="space-y-4">
               <h3 class="group text-xl font-semibold text-foreground lg:text-2xl">
                 <a
                   href={project.href}
@@ -49,20 +44,25 @@ const projects = getFeaturedProjects();
                 </a>
               </h3>
 
-              <p class="max-w-lg text-muted-foreground leading-relaxed">{project.description}</p>
+              <p class="text-muted-foreground leading-relaxed">{project.description}</p>
 
-              <p class="pt-2 text-sm text-muted-foreground/80">
-                {project.techStack.join(' · ')}
-              </p>
+              <div class="flex flex-wrap gap-2 pt-1">
+                {project.techStack.map((tech) => (
+                  <span class="inline-flex items-center rounded-md border border-border/50 bg-card/50 px-2.5 py-1 text-xs text-muted-foreground/80">
+                    {tech}
+                  </span>
+                ))}
+              </div>
 
-              <div class="flex items-center gap-3 pt-4">
+              <div class="flex items-center gap-3 pt-2">
                 <a
                   href={project.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="inline-flex h-9 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90 hover:scale-[1.02]"
                 >
-                  View Project
+                  View Live
+                  <ExternalLink className="h-4 w-4" />
                 </a>
                 {project.github && (
                   <a
@@ -75,15 +75,6 @@ const projects = getFeaturedProjects();
                     <GithubIcon className="h-5 w-5" />
                   </a>
                 )}
-              </div>
-            </div>
-
-            <div class="w-full lg:w-[50%] lg:shrink-0">
-              <div class="overflow-hidden rounded-xl border border-border/50 bg-card/30 transition-all duration-300 group-hover/card:border-border group-hover/card:shadow-lg group-hover/card:shadow-black/5">
-                <ImageLightbox
-                  images={project.images}
-                  alt={`${project.title} preview`}
-                />
               </div>
             </div>
           </article>

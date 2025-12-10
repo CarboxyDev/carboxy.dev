@@ -5,11 +5,9 @@ import { PenLine, ArrowRight } from 'lucide-react';
 ---
 
 <section class="relative flex flex-col items-center text-center lg:items-start lg:text-left">
-  <!-- Background gradient blob -->
   <div class="hero-gradient-blob" aria-hidden="true"></div>
 
   <div class="flex flex-col items-center gap-8 lg:flex-row lg:items-start lg:gap-10">
-    <!-- Abstract Avatar -->
     <div class="relative shrink-0">
       <div class="avatar-gradient h-24 w-24 rounded-full md:h-28 md:w-28"></div>
       <div class="absolute inset-0 rounded-full ring-2 ring-border/50"></div>
@@ -21,13 +19,14 @@ import { PenLine, ArrowRight } from 'lucide-react';
           <span class="hero-name">CarboxyDev</span>
         </h1>
         <p class="text-lg text-muted-foreground md:text-xl">
-          Turning ideas into interfaces people love
+          Transforming ideas into digital reality
         </p>
       </div>
 
       <p class="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
         I'm a full-stack developer who cares deeply about the details.
-        Whether it's a smooth animation or a well-structured API, I believe great software should feel effortless to use.
+        <br />
+        I excel at crafting beautiful, cohesive and functional interfaces.
       </p>
 
       <div class="flex items-center justify-center gap-1 lg:justify-start">
@@ -71,14 +70,14 @@ import { PenLine, ArrowRight } from 'lucide-react';
       <div class="flex flex-col gap-3 pt-2 sm:flex-row">
         <button
           id="view-work-btn"
-          class="group inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-primary px-7 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90 hover:gap-3"
+          class="group cursor-pointer inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-primary px-7 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90 hover:gap-3"
         >
           View my work
           <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
         </button>
         <button
           id="contact-btn"
-          class="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-border bg-transparent px-7 text-sm font-medium text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground"
+          class="cursor-pointer inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-border bg-transparent px-7 text-sm font-medium text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground"
         >
           Get in touch
         </button>

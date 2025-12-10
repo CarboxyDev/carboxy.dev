@@ -1,3 +1,5 @@
+type ProjectType = 'Open Source' | 'SaaS' | 'Template' | 'Tool';
+
 interface Project {
   id: string;
   title: string;
@@ -7,6 +9,7 @@ interface Project {
   techStack: string[];
   github?: string;
   isFeatured: boolean;
+  type: ProjectType;
 }
 
 const PROJECTS: Project[] = [
@@ -20,6 +23,7 @@ const PROJECTS: Project[] = [
     techStack: ['TypeScript', 'Next.js', 'Fastify', 'Turborepo'],
     github: 'https://github.com/CarboxyDev/blitzpack',
     isFeatured: true,
+    type: 'Template',
   },
   {
     id: 'adden-ai',
@@ -30,6 +34,7 @@ const PROJECTS: Project[] = [
     images: ['adden3.png'],
     techStack: ['TypeScript', 'Next.js', 'FastAPI'],
     isFeatured: true,
+    type: 'SaaS',
   },
   {
     id: 'quizfoundry',
@@ -41,6 +46,7 @@ const PROJECTS: Project[] = [
     techStack: ['TypeScript', 'Next.js', 'Express.js'],
     github: 'https://github.com/CarboxyDev/quizfoundry',
     isFeatured: true,
+    type: 'Open Source',
   },
 ];
 

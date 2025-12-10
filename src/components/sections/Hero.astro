@@ -1,76 +1,88 @@
 ---
 import { LINKS } from '@/lib/config/links';
 import { GithubIcon, MailIcon, TwitterIcon } from '@/components/icons/social-icons';
-import { PenLine } from 'lucide-react';
+import { PenLine, ArrowRight } from 'lucide-react';
 ---
 
 <section class="relative flex flex-col items-center text-center lg:items-start lg:text-left">
-  <div class="space-y-6">
-    <div class="space-y-2">
-      <h1 class="text-4xl font-semibold tracking-tight text-foreground md:text-5xl lg:text-6xl font-heading">
-        CarboxyDev
-      </h1>
-      <p class="text-lg text-muted-foreground md:text-xl">
-        Full-stack Developer
+  <!-- Background gradient blob -->
+  <div class="hero-gradient-blob" aria-hidden="true"></div>
+
+  <div class="flex flex-col items-center gap-8 lg:flex-row lg:items-start lg:gap-10">
+    <!-- Abstract Avatar -->
+    <div class="relative shrink-0">
+      <div class="avatar-gradient h-24 w-24 rounded-full md:h-28 md:w-28"></div>
+      <div class="absolute inset-0 rounded-full ring-2 ring-border/50"></div>
+    </div>
+
+    <div class="space-y-6">
+      <div class="space-y-3">
+        <h1 class="text-4xl font-semibold tracking-tight text-foreground md:text-5xl lg:text-6xl font-heading">
+          <span class="hero-name">CarboxyDev</span>
+        </h1>
+        <p class="text-lg text-muted-foreground md:text-xl">
+          Turning ideas into interfaces people love
+        </p>
+      </div>
+
+      <p class="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+        I'm a full-stack developer who cares deeply about the details.
+        Whether it's a smooth animation or a well-structured API, I believe great software should feel effortless to use.
       </p>
-    </div>
 
-    <p class="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-      I build performant web applications from concept to deployment.
-      Focused on clean code, intuitive interfaces, and scalable architecture.
-    </p>
+      <div class="flex items-center justify-center gap-1 lg:justify-start">
+        <a
+          href={LINKS.twitter}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Follow on Twitter"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground hover:scale-105"
+        >
+          <TwitterIcon className="h-5 w-5" />
+        </a>
+        <a
+          href={LINKS.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View GitHub profile"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground hover:scale-105"
+        >
+          <GithubIcon className="h-5 w-5" />
+        </a>
+        <button
+          id="hero-email-btn"
+          type="button"
+          aria-label="Copy email address"
+          class="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground hover:scale-105"
+        >
+          <MailIcon className="h-5 w-5" />
+        </button>
+        <a
+          href={LINKS.blog}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Read blog"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground hover:scale-105"
+        >
+          <PenLine className="h-5 w-5" />
+        </a>
+      </div>
 
-    <div class="flex items-center justify-center gap-1 lg:justify-start">
-      <a
-        href={LINKS.twitter}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Follow on Twitter"
-        class="inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-      >
-        <TwitterIcon className="h-5 w-5" />
-      </a>
-      <a
-        href={LINKS.github}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="View GitHub profile"
-        class="inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-      >
-        <GithubIcon className="h-5 w-5" />
-      </a>
-      <button
-        id="hero-email-btn"
-        type="button"
-        aria-label="Copy email address"
-        class="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-      >
-        <MailIcon className="h-5 w-5" />
-      </button>
-      <a
-        href={LINKS.blog}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Read blog"
-        class="inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-      >
-        <PenLine className="h-5 w-5" />
-      </a>
-    </div>
-
-    <div class="flex flex-col gap-3 pt-2 sm:flex-row">
-      <button
-        id="view-work-btn"
-        class="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-      >
-        View my work
-      </button>
-      <button
-        id="contact-btn"
-        class="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-border bg-background px-6 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-      >
-        Get in touch
-      </button>
+      <div class="flex flex-col gap-3 pt-2 sm:flex-row">
+        <button
+          id="view-work-btn"
+          class="group inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-primary px-7 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90 hover:gap-3"
+        >
+          View my work
+          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+        </button>
+        <button
+          id="contact-btn"
+          class="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-border bg-transparent px-7 text-sm font-medium text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground"
+        >
+          Get in touch
+        </button>
+      </div>
     </div>
   </div>
 </section>

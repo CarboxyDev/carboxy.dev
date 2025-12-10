@@ -1,135 +1,105 @@
 ---
-import RadialSpotlight from '@/components/RadialSpotlight.astro';
-import { SocialButton } from '@/components/react/SocialButton';
-import {
-  GithubIcon,
-  MailIcon,
-  TwitterIcon,
-} from '@/components/icons/social-icons';
 import { LINKS } from '@/lib/config/links';
-import { cn } from '@/lib/utils';
-import { ArrowBigDownDash, ArrowRight, NotebookPen } from 'lucide-react';
+import { GithubIcon, MailIcon, TwitterIcon } from '@/components/icons/social-icons';
+import { PenLine } from 'lucide-react';
 ---
 
-<section class="relative flex flex-col items-center text-center">
-  <RadialSpotlight className="-top-40" />
-  <div
-    class={cn(
-      'relative z-10 text-balance text-4xl font-semibold md:text-5xl lg:text-6xl font-heading'
-    )}
-  >
-    <h1 class="mb-4 text-zinc-100">
-      Transforming Ideas into Digital Reality.
-    </h1>
-    <div
-      class="animate-fade-in-up bg-linear-to-r from-sky-400 via-indigo-400 to-blue-400 bg-clip-text pb-2 text-3xl font-semibold text-transparent opacity-0 transition-all duration-300 hover:scale-[1.03] hover:drop-shadow-[0_0_20px_rgba(139,92,246,0.3)] md:text-4xl lg:text-5xl"
-      style="animation-delay: 0.4s; animation-fill-mode: both;"
-    >
-      Turning visions into products.
-    </div>
-  </div>
-
-  <div class="relative z-10 mt-6 max-w-2xl text-lg leading-relaxed text-zinc-200 sm:text-xl 2xl:mt-12">
-    Full-stack developer with powerful design skills. Proficient in creating
-    beautiful, cohesive interfaces that work end-to-end.
-  </div>
-
-  <div class="relative z-10 mt-10 flex flex-col gap-4 sm:flex-row sm:gap-6">
-    <button
-      id="learn-more-btn"
-      class="cta-button cursor-pointer group inline-flex h-14 items-center gap-3 rounded-md bg-linear-to-r from-primary-600 via-primary-500 to-primary-600 px-8 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-primary-500 hover:via-primary-400 hover:to-primary-500 hover:shadow-xl active:scale-95"
-    >
-      <ArrowBigDownDash className="h-5 w-5 transition-all duration-300 ease-in-out group-hover:translate-y-0.5" />
-      <span>View my work</span>
-    </button>
-
-    <button
-      id="about-me-btn"
-      class="cta-button cursor-pointer group inline-flex h-14 items-center gap-3 rounded-md border border-zinc-700/70 bg-zinc-800/50 px-8 font-semibold text-zinc-300 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-zinc-500 hover:bg-zinc-700/50 hover:text-white active:scale-95"
-    >
-      <span>Learn about me</span>
-      <ArrowRight className="h-4 w-4 transition-all duration-300 group-hover:translate-x-1" />
-    </button>
-  </div>
-
-  <script>
-    import { scrollToElementById, scrollToSelector } from '@/lib/scroll';
-
-    const learnMoreBtn = document.getElementById('learn-more-btn');
-    const aboutMeBtn = document.getElementById('about-me-btn');
-
-    if (learnMoreBtn) {
-      learnMoreBtn.addEventListener('click', () => {
-        scrollToElementById('projects');
-      });
-    }
-
-    if (aboutMeBtn) {
-      aboutMeBtn.addEventListener('click', () => {
-        scrollToSelector('[data-section="skills"]');
-      });
-    }
-  </script>
-
-  <div class="relative z-10 mt-24 flex flex-col items-center gap-12">
-    <div class="flex items-center gap-4">
-      <div
-        class="animate-slide-in-left h-px w-16 bg-linear-to-r from-transparent via-zinc-600/50 to-zinc-600/50 opacity-0"
-        style="animation-delay: 1.2s; animation-fill-mode: both;"
-      ></div>
-      <div class="flex items-center gap-2">
-        <div
-          class="animate-divider-glow-once h-1.5 w-1.5 rounded-full bg-zinc-400"
-          style="animation-delay: 1.8s; color: #a1a1aa;"
-        ></div>
-        <div
-          class="animate-divider-glow-once h-1.5 w-1.5 rounded-full bg-zinc-300"
-          style="animation-delay: 2.0s; color: #d4d4d8;"
-        ></div>
-        <div
-          class="animate-divider-glow-once h-1.5 w-1.5 rounded-full bg-zinc-400"
-          style="animation-delay: 2.2s; color: #a1a1aa;"
-        ></div>
-      </div>
-      <div
-        class="animate-slide-in-right h-px w-16 bg-linear-to-l from-transparent via-zinc-600/50 to-zinc-600/50 opacity-0"
-        style="animation-delay: 1.4s; animation-fill-mode: both;"
-      ></div>
+<section class="relative flex flex-col items-center text-center lg:items-start lg:text-left">
+  <div class="space-y-6">
+    <div class="space-y-2">
+      <h1 class="text-4xl font-semibold tracking-tight text-foreground md:text-5xl lg:text-6xl font-heading">
+        CarboxyDev
+      </h1>
+      <p class="text-lg text-muted-foreground md:text-xl">
+        Full-Stack Developer
+      </p>
     </div>
 
-    <div class="flex justify-center gap-4">
-      <div
-        class="animate-fade-in-up opacity-0"
-        style="animation-delay: 2.4s; animation-fill-mode: both;"
+    <p class="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+      I build performant web applications from concept to deployment.
+      Focused on clean code, intuitive interfaces, and scalable architecture.
+    </p>
+
+    <div class="flex items-center justify-center gap-1 lg:justify-start">
+      <a
+        href={LINKS.twitter}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Follow on Twitter"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
       >
-        <SocialButton site="X (Formerly Twitter)" url={LINKS.twitter} client:idle>
-          <TwitterIcon className="size-5 text-zinc-300" />
-        </SocialButton>
-      </div>
-      <div
-        class="animate-fade-in-up opacity-0"
-        style="animation-delay: 2.6s; animation-fill-mode: both;"
+        <TwitterIcon className="h-5 w-5" />
+      </a>
+      <a
+        href={LINKS.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="View GitHub profile"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
       >
-        <SocialButton site="Github" url={LINKS.github} client:idle>
-          <GithubIcon className="size-5 text-zinc-300" />
-        </SocialButton>
-      </div>
-      <div
-        class="animate-fade-in-up opacity-0"
-        style="animation-delay: 2.8s; animation-fill-mode: both;"
+        <GithubIcon className="h-5 w-5" />
+      </a>
+      <button
+        id="hero-email-btn"
+        type="button"
+        aria-label="Copy email address"
+        class="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
       >
-        <SocialButton site="Email" url={LINKS.email} client:idle>
-          <MailIcon className="size-5 text-zinc-300" />
-        </SocialButton>
-      </div>
-      <div
-        class="animate-fade-in-up opacity-0"
-        style="animation-delay: 3.0s; animation-fill-mode: both;"
+        <MailIcon className="h-5 w-5" />
+      </button>
+      <a
+        href={LINKS.blog}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Read blog"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
       >
-        <SocialButton site="Blog" url={LINKS.blog} client:idle>
-          <NotebookPen className="size-5 text-zinc-300" />
-        </SocialButton>
-      </div>
+        <PenLine className="h-5 w-5" />
+      </a>
+    </div>
+
+    <div class="flex flex-col gap-3 pt-2 sm:flex-row">
+      <button
+        id="view-work-btn"
+        class="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+      >
+        View my work
+      </button>
+      <button
+        id="contact-btn"
+        class="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-border bg-background px-6 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+      >
+        Get in touch
+      </button>
     </div>
   </div>
 </section>
+
+<script>
+  import { scrollToElementById, scrollToSelector } from '@/lib/scroll';
+  import { copyEmailToClipboard } from '@/lib/clipboard';
+  import { LINKS } from '@/lib/config/links';
+
+  const viewWorkBtn = document.getElementById('view-work-btn');
+  const contactBtn = document.getElementById('contact-btn');
+  const emailBtn = document.getElementById('hero-email-btn');
+
+  viewWorkBtn?.addEventListener('click', () => {
+    scrollToElementById('projects');
+  });
+
+  contactBtn?.addEventListener('click', () => {
+    scrollToSelector('[data-section="contact"]');
+  });
+
+  emailBtn?.addEventListener('click', async () => {
+    try {
+      const email = await copyEmailToClipboard(LINKS.email);
+      const { toast } = await import('sonner');
+      toast.success('Email copied!', { description: email });
+    } catch {
+      const { toast } = await import('sonner');
+      toast.error('Failed to copy email');
+    }
+  });
+</script>

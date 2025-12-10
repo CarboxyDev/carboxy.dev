@@ -2,38 +2,20 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "@/components/sections/Hero.astro";
 import Projects from "@/components/sections/Projects.astro";
-import { Skills } from "@/components/sections/Skills";
+import Skills from "@/components/sections/Skills.astro";
 import Contact from "@/components/sections/Contact.astro";
 ---
 
 <BaseLayout title="CarboxyDev">
-  <main class="mx-auto flex max-w-screen-2xl flex-col px-6 py-16 sm:px-24 md:px-32 lg:px-52 xl:px-36">
-    <section
-      class="animate-fade-in-up min-h-[80vh] pt-8 lg:pt-16 2xl:pt-28"
-      style="animation-delay: 0.2s; animation-fill-mode: both;"
-    >
+  <main class="mx-auto flex max-w-3xl flex-col px-6 py-16 lg:py-24">
+    <section class="animate-fade-in min-h-[70vh] flex items-center">
       <Hero />
     </section>
 
-    <section
-      class="animate-fade-in-up"
-      style="animation-delay: 0.4s; animation-fill-mode: both;"
-    >
-      <Projects />
-    </section>
+    <Projects />
 
-    <section
-      class="animate-fade-in-up mt-20"
-      style="animation-delay: 0.6s; animation-fill-mode: both;"
-    >
-      <Skills client:visible />
-    </section>
+    <Skills />
 
-    <section
-      class="animate-fade-in-up mt-20"
-      style="animation-delay: 0.8s; animation-fill-mode: both;"
-    >
-      <Contact />
-    </section>
+    <Contact />
   </main>
 </BaseLayout>

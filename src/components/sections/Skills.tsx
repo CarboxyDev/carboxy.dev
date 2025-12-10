@@ -448,7 +448,7 @@ export const Skills = () => {
   const gridIsInView = useInView(gridRef, { once: true, amount: 0.1 });
 
   return (
-    <div className="relative">
+    <div className="relative" data-section="skills">
       <motion.div
         ref={titleRef}
         initial={{ opacity: 0, y: 30 }}

@@ -1,175 +1,105 @@
 # CLAUDE.md
 
-## AI Decision Framework
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-When working with this Next.js portfolio codebase, follow these strict implementation patterns:
+## Project Overview
 
-### Code Generation Rules
-- ALWAYS use TypeScript with explicit types - never `any`
-- NEVER add comments unless handling non-obvious edge cases
-- ALWAYS use named exports: `export const Component = () => {}`
-- ALWAYS use `interface` for props, `type` for unions
-- ALWAYS use descriptive boolean names: `isPending`, `hasError`, `isVisible`
+This is a personal portfolio website for CarboxyDev built with Astro 5.16.4 and React 19.2.1. The site is a single-page application showcasing projects, skills, and contact information with sophisticated animations and interactive elements.
 
-### Component Creation Pattern
-```typescript
-interface ComponentProps {
-  // explicit types here
-}
+## Development Commands
 
-export const ComponentName = ({ prop1, prop2 }: ComponentProps) => {
-  // implementation
-  return (
-    <div className={cn("base-classes", conditionalClasses)}>
-      {/* content */}
-    </div>
-  )
-}
-```
-
-### File Creation Decision Tree
-- **New component**: `src/components/[kebab-case-name].tsx`
-- **New page**: `src/app/[route]/page.tsx`
-- **New utility**: `src/lib/[kebab-case-name].ts`
-- **New config**: `src/lib/config/[kebab-case-name].ts`
-- **Blog post**: `content/blogs/[slug].mdx`
-
-### Import Patterns - Use These Exactly
-```typescript
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Icons } from "lucide-react"
-import { motion } from "framer-motion"
-```
-
-### Styling Decision Matrix
-- **UI Components**: Use shadcn/ui first, extend if needed
-- **Animations**: Use framer-motion for meaningful interactions only
-- **Icons**: Always lucide-react
-- **Colors**: Dark theme `bg-[#141416]`, follow existing palette
-- **Interactions**: Always add `hover:`, `focus:`, `transition` states
-
-### Content Management Rules
-- **Project data**: Add to `src/lib/config/projects.ts` with proper TypeScript interface
-- **Blog posts**: MDX in `content/blogs/` with frontmatter
-- **Images**: Store in `/public/`, reference without path prefix in config
-
-## Tech Stack Implementation
-
-### Required Dependencies (already installed)
-- Next.js 14 + App Router + React 19
-- TypeScript (strict mode)
-- TailwindCSS + tailwindcss-animate
-- shadcn/ui components
-- Framer Motion
-- Lucide React
-
-### Development Commands
 ```bash
-npm run dev    # localhost:3000
-npm run build  # production build
-npm run lint   # ESLint check
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
+## Architecture
 
-- Do not run or build unless explicitly asked by the user
+### Hybrid Astro/React Approach
 
-## Critical File Locations
+The project uses a hybrid architecture combining Astro's static site generation with React's interactivity:
 
-### Core Architecture Files
-- `src/app/layout.tsx` - Root layout with SEO configuration
-- `src/lib/utils.ts` - Contains `cn()` utility for className merging
-- `src/lib/config/projects.ts` - Project data configuration
-- `tailwind.config.ts` - Custom theme and animations
+- **Astro components** (`.astro`): Used for static content and layout structures. These are compiled at build time and ship no JavaScript by default.
+- **React components** (`.tsx`): Used for interactive elements requiring client-side JavaScript. Must be explicitly hydrated using Astro's client directives (`client:load`, `client:visible`, etc.).
 
-### Component Categories
-- `src/components/ui/` - shadcn/ui components (button, carousel, tooltip)
-- `src/components/` - Custom components (background effects, project cards)
-- `src/app/(home)/` - Landing page sections
-- `src/app/blog/` - Blog functionality
+### Key Architectural Patterns
 
-## Code Patterns to Follow
+1. **Client Directives**: React components in Astro files must specify when to hydrate:
+   - `client:load` - Hydrates immediately on page load (e.g., `Toaster`)
+   - `client:visible` - Hydrates when component enters viewport (e.g., `Skills`)
 
-### State Management
-```typescript
-const [isLoading, setIsLoading] = useState(false)
-const [error, setError] = useState<string | null>(null)
-```
+2. **Path Aliases**: Use `@/*` to import from `src/*`:
+   ```typescript
+   import { cn } from '@/lib/utils';
+   import Hero from '@/components/sections/Hero.astro';
+   ```
 
-### Conditional Rendering
-```typescript
-{isLoading ? <Skeleton /> : <ActualContent />}
-{error && <ErrorMessage error={error} />}
-```
+3. **Configuration as Data**: Project info and external links are centralized in `/src/lib/config/`:
+   - `projects.ts` - Project definitions with metadata, tech stack, and images
+   - `links.ts` - Social and external links
 
-### TailwindCSS Class Composition
-```typescript
-className={cn(
-  "base-classes here",
-  isActive && "active-classes",
-  variant === "primary" && "primary-classes"
-)}
-```
+4. **Component Organization**:
+   - `/src/components/sections/` - Main page sections (Hero, Projects, About, Skills, Contact)
+   - `/src/components/react/` - Interactive React components requiring client-side hydration
+   - `/src/components/ui/` - Reusable UI primitives based on Radix UI (Button, Tooltip, Toaster)
+   - `/src/components/icons/` - SVG icon components separated by type (brand-icons.tsx, social-icons.tsx)
 
-### Framer Motion Usage
-```typescript
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.3 }}
->
-```
+5. **Layout System**: `BaseLayout.astro` provides the HTML shell with:
+   - SEO meta tags (Open Graph, Twitter Cards)
+   - Global styles import
+   - Toast notification system
 
-## Implementation Decision Rules
+### Animation Strategy
 
-### When Creating New Features
-1. **Check existing components first** - extend shadcn/ui before custom
-2. **Define TypeScript interfaces** before implementation
-3. **Use existing config patterns** from `src/lib/config/`
-4. **Follow kebab-case naming** for files and folders
-5. **Add proper SEO metadata** if creating new pages
+The site uses two animation libraries with distinct purposes:
 
-### Performance Requirements
-- Use `React.Suspense` for data loading
-- Implement `Skeleton` components for loading states
-- Lazy load heavy components with `dynamic()`
-- Debounce search inputs and heavy interactions
+- **Framer Motion**: Layout animations, scroll-based reveals, interactive hover/tap effects. Used in Skills.tsx and most interactive components.
+- **React Spring**: Physics-based spring animations for smooth transitions. Used sparingly for specific effects.
 
-### SEO Requirements (for new pages)
-- Add metadata export with title, description, OpenGraph
-- Include structured data if relevant
-- Use semantic HTML elements
-- Implement proper heading hierarchy
+CSS animations are used for initial page load fade-ins (see `index.astro` sections with `animate-fade-in-up` and staggered delays).
 
-## Error Handling Patterns
-```typescript
-try {
-  // async operation
-} catch (error) {
-  setError(error instanceof Error ? error.message : 'Unknown error')
-}
-```
+### Styling Approach
 
-## Project-Specific Context
+- TailwindCSS 4.1.17 via Vite plugin for utility-first styling
+- Custom utilities: `cn()` helper in `/src/lib/utils.ts` merges Tailwind classes safely
+- Design tokens defined in global.css for consistent gradients, shadows, and animations
+- Dark theme with zinc-based color palette (zinc-900 backgrounds, zinc-700 borders, etc.)
 
-This is CarboxyDev's portfolio website showcasing:
-- Full-stack development projects
-- Blog posts about development
-- Skills and experience
-- Contact information for freelance work
+## Component Patterns
 
-Key visual elements:
-- Dark theme with particle background effects
-- Smooth animations and transitions
-- Modern card-based layout for projects
-- Responsive design with mobile-first approach
 
-## Path Aliases (configured)
-- `@/*` maps to `src/*`
+### Icon System
 
-## Development Notes for AI
-- Console logs automatically removed in production builds
-- Particle effects are performance-optimized
-- All project images stored in `/public/` without path prefixes
-- MDX blog posts automatically processed with syntax highlighting
-- Debug screens available in development mode only
+Icons are organized by category in separate files:
+- `brand-icons.tsx` - Technology logos (React, TypeScript, Next.js, etc.)
+- `social-icons.tsx` - Social platform icons
+- `types.ts` - Shared icon prop types
+
+All icons accept `className` prop for styling and sizing.
+
+### Interactive Components
+
+When adding new React components that need client-side interactivity:
+1. Place in `/src/components/react/`
+2. Use in Astro files with appropriate `client:*` directive
+3. Prefer `client:visible` for below-the-fold content to optimize initial page load
+
+## TypeScript Configuration
+
+The project uses Astro's strict TypeScript configuration with:
+- React JSX transform
+- Path aliases configured in `tsconfig.json`
+- Type checking enforced in Astro frontmatter and React components
+
+## Deployment Considerations
+
+- Site URL: `https://carboxy.dev` (hardcoded in BaseLayout.astro)
+- Static assets must be in `/public/` to be accessible
+- Build output goes to `/dist/`
+- Preview images for SEO are served from root (e.g., `/logo.png`)

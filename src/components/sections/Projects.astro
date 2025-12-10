@@ -1,89 +1,81 @@
 ---
 import { GithubIcon } from '@/components/icons/social-icons';
 import ImageLightbox from '@/components/ImageLightbox.astro';
-import SectionHeading from '@/components/SectionHeading.astro';
-import { Button } from '@/components/ui/button';
-import { PrimaryButton } from '@/components/ui/primary-button';
 import { getFeaturedProjects } from '@/lib/config/projects';
-import { cn } from '@/lib/utils';
 import { ExternalLink } from 'lucide-react';
 
 const projects = getFeaturedProjects();
 ---
 
-<section id="projects" class="flex flex-col pt-20 sm:mb-44 lg:pt-32">
-  <SectionHeading title="Featured Projects" />
+<section id="projects" class="flex flex-col pt-20 lg:pt-32">
+  <h2 class="text-2xl font-semibold tracking-tight text-foreground md:text-3xl font-heading">
+    Projects
+  </h2>
 
-  <div class="mt-16">
-    <div class="flex flex-col gap-y-24 sm:gap-y-32 lg:gap-y-40">
+  <div class="mt-12">
+    <div class="flex flex-col">
       {projects.map((project, index) => {
-        const align = index % 2 === 0 ? 'left' : 'right';
-
         return (
           <article
-            class={cn(
-              'project-card flex flex-col gap-8 lg:gap-12',
-              align === 'left' ? 'lg:flex-row' : 'lg:flex-row-reverse'
-            )}
-            style={`animation-delay: ${index * 0.2}s`}
+            class="group/card flex flex-col gap-6 py-16 lg:py-20 first:pt-0 border-t border-border/50 first:border-t-0 animate-fade-in-up"
+            style={`animation-delay: ${index * 150}ms`}
           >
-            <div
-              class={cn(
-                'flex-1 space-y-6',
-                align === 'left' ? 'lg:mr-8' : 'lg:ml-8'
-              )}
-            >
-              <div>
-                <h3 class="group text-3xl font-bold text-white lg:text-4xl">
-                  <a
-                    href={project.href}
-                    target="_blank"
-                    class="inline-flex items-center gap-3 transition-all duration-300 hover:translate-x-1 hover:text-primary-400"
-                  >
-                    {project.title}
-                    <ExternalLink className="h-6 w-6 opacity-0 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100" />
-                  </a>
-                </h3>
+            <!-- Image -->
+            <div class="w-full">
+              <div class="overflow-hidden rounded-xl border border-border/50 bg-card/30 transition-all duration-300 group-hover/card:border-border group-hover/card:shadow-lg group-hover/card:shadow-black/5">
+                <ImageLightbox
+                  images={project.images}
+                  alt={`${project.title} preview`}
+                />
               </div>
+            </div>
 
-              <p class="max-w-lg leading-relaxed text-zinc-300">{project.description}</p>
+            <!-- Content -->
+            <div class="space-y-4">
+              <h3 class="group text-xl font-semibold text-foreground lg:text-2xl">
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 transition-colors hover:text-muted-foreground"
+                >
+                  {project.title}
+                  <ExternalLink className="h-4 w-4 opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0.5" />
+                </a>
+              </h3>
 
-              <div class="flex flex-wrap gap-2">
+              <p class="text-muted-foreground leading-relaxed">{project.description}</p>
+
+              <div class="flex flex-wrap gap-2 pt-1">
                 {project.techStack.map((tech) => (
-                  <span
-                    class={cn(
-                      'inline-flex items-center rounded-full border border-primary-500/20 bg-primary-500/10 px-3 py-1.5 text-sm font-medium text-primary-400 transition-colors hover:border-primary-500/30 hover:bg-primary-500/20 font-mono-badge'
-                    )}
-                  >
+                  <span class="inline-flex items-center rounded-md border border-border/50 bg-card/50 px-2.5 py-1 text-xs text-muted-foreground/80">
                     {tech}
                   </span>
                 ))}
               </div>
 
-              <div class="flex gap-3 pt-4">
-                <PrimaryButton href={project.href} target="_blank">
+              <div class="flex items-center gap-3 pt-2">
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex h-9 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90 hover:scale-[1.02]"
+                >
+                  View Live
                   <ExternalLink className="h-4 w-4" />
-                  <span>View Project</span>
-                </PrimaryButton>
+                </a>
                 {project.github && (
-                  <a href={project.github} target="_blank">
-                    <Button
-                      variant="outline"
-                      className="group h-12 gap-2 border border-zinc-700/70 bg-zinc-800/50 px-6 font-semibold text-zinc-300 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-zinc-500 hover:bg-zinc-700/50 hover:text-white active:scale-95"
-                    >
-                      <GithubIcon className="size-5" />
-                      <span>View Code</span>
-                    </Button>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View source code"
+                    class="inline-flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground hover:scale-105"
+                  >
+                    <GithubIcon className="h-5 w-5" />
                   </a>
                 )}
               </div>
-            </div>
-
-            <div class="max-w-2xl flex-1">
-              <ImageLightbox
-                images={project.images}
-                alt={`${project.title} preview`}
-              />
             </div>
           </article>
         );
@@ -91,18 +83,3 @@ const projects = getFeaturedProjects();
     </div>
   </div>
 </section>
-
-<style>
-  .project-card {
-    opacity: 0;
-    transform: translateY(40px);
-    animation: fadeInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  }
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>

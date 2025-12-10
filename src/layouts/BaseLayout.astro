@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { Toaster } from "@/components/ui/toaster";
+import { ThemeToggle } from "@/components/react/ThemeToggle";
 
 interface Props {
   title?: string;
@@ -15,7 +16,7 @@ const {
 const siteUrl = "https://carboxy.dev";
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,6 +24,20 @@ const siteUrl = "https://carboxy.dev";
     <meta name="description" content={description} />
     <meta name="author" content="CarboxyDev" />
     <meta name="keywords" content="CarboxyDev, full-stack developer, freelance web developer, React developer, Next.js developer, UI/UX developer, available for work" />
+
+    <!-- Theme script - prevents FOUC -->
+    <script is:inline>
+      (function() {
+        const stored = localStorage.getItem('theme');
+        if (stored === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else if (stored === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
@@ -49,7 +64,8 @@ const siteUrl = "https://carboxy.dev";
     <!-- Canonical -->
     <link rel="canonical" href={siteUrl} />
   </head>
-  <body class="text-white antialiased">
+  <body class="antialiased">
+    <ThemeToggle client:load />
     <slot />
     <Toaster client:load />
   </body>

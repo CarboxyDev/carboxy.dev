@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { GithubIcon } from '@/components/icons/social-icons';
 import ImageLightbox from '@/components/ImageLightbox.astro';
 import { getFeaturedProjects } from '@/lib/config/projects';
@@ -23,10 +24,23 @@ const projects = getFeaturedProjects();
             <!-- Image -->
             <div class="w-full">
               <div class="overflow-hidden rounded-xl border border-border/50 bg-card/30 transition-all duration-300 group-hover/card:border-border group-hover/card:shadow-lg group-hover/card:shadow-black/5">
-                <ImageLightbox
-                  images={project.images}
-                  alt={`${project.title} preview`}
-                />
+                {project.cropImage ? (
+                  <div class="group/img relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden">
+                    <Image
+                      src={`/${project.images[0]}`}
+                      alt={`${project.title} preview`}
+                      width={800}
+                      height={600}
+                      class="w-full object-cover object-top transition-transform duration-[3s] ease-in-out group-hover/img:translate-y-[calc(-100%+300px)] sm:group-hover/img:translate-y-[calc(-100%+400px)] md:group-hover/img:translate-y-[calc(-100%+500px)]"
+                      loading="lazy"
+                    />
+                  </div>
+                ) : (
+                  <ImageLightbox
+                    images={project.images}
+                    alt={`${project.title} preview`}
+                  />
+                )}
               </div>
             </div>
 

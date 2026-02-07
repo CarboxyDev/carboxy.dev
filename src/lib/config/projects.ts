@@ -10,6 +10,7 @@ interface Project {
   github?: string;
   isFeatured: boolean;
   type: ProjectType;
+  cropImage?: boolean;
 }
 
 const PROJECTS: Project[] = [
@@ -24,6 +25,19 @@ const PROJECTS: Project[] = [
     github: 'https://github.com/CarboxyDev/blitzpack',
     isFeatured: true,
     type: 'Template',
+  },
+  {
+    id: 'anicite',
+    title: 'Anicite',
+    description:
+      'Anicite is a privacy-first browser extension that provides local-only analytics of your browsing activity. Understand your habits through a rich web dashboard without any data ever leaving your device.',
+    href: 'https://anicite.carboxy.dev',
+    images: ['anicite1.png'],
+    techStack: ['Chrome Extension', 'WXT', 'Typescript'],
+    github: 'https://github.com/CarboxyDev/Anicite',
+    isFeatured: true,
+    type: 'Tool',
+    cropImage: true,
   },
   {
     id: 'adden-ai',

@@ -2,6 +2,8 @@
 import "../styles/global.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeToggle } from "@/components/react/ThemeToggle";
+import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 
 interface Props {
   title?: string;
@@ -68,5 +70,7 @@ const siteUrl = "https://carboxy.dev";
     <ThemeToggle client:load />
     <slot />
     <Toaster client:load />
+    <Analytics />
+    <SpeedInsights />
   </body>
 </html>

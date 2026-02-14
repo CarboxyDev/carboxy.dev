@@ -4,29 +4,29 @@ import { GithubIcon, MailIcon, TwitterIcon } from '@/components/icons/social-ico
 import { PenLine, ArrowRight } from 'lucide-react';
 ---
 
-<section class="relative flex flex-col items-center text-center lg:items-start lg:text-left">
-  <div class="hero-gradient-blob" aria-hidden="true"></div>
+<section id="hero-section" class="relative flex flex-col items-center text-center lg:items-start lg:text-left">
+  <div class="hero-gradient-blob" id="hero-blob" aria-hidden="true"></div>
 
   <div class="flex flex-col items-center gap-8 lg:flex-row lg:items-start lg:gap-10">
-    <div class="relative shrink-0">
+    <div class="hero-stagger hero-stagger-1 relative shrink-0">
       <div class="avatar-gradient h-24 w-24 rounded-full md:h-28 md:w-28"></div>
       <div class="absolute inset-0 rounded-full ring-2 ring-border/50"></div>
     </div>
 
     <div class="space-y-6">
-      <div class="space-y-3">
+      <div class="hero-stagger hero-stagger-2 space-y-3">
         <h1 class="text-4xl font-semibold tracking-tight text-foreground md:text-5xl lg:text-6xl font-heading">
           <span class="hero-name">CarboxyDev</span>
         </h1>
       </div>
 
-      <p class="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+      <p class="hero-stagger hero-stagger-3 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
         I'm a full-stack developer who cares deeply about the details.
         <br />
         I excel at crafting beautiful, cohesive and functional interfaces.
       </p>
 
-      <div class="flex items-center justify-center gap-1 lg:justify-start">
+      <div class="hero-stagger hero-stagger-4 flex items-center justify-center gap-1 lg:justify-start">
         <a
           href={LINKS.twitter}
           target="_blank"
@@ -64,10 +64,10 @@ import { PenLine, ArrowRight } from 'lucide-react';
         </a>
       </div>
 
-      <div class="flex flex-col gap-3 pt-2 sm:flex-row">
+      <div class="hero-stagger hero-stagger-5 flex flex-col gap-3 pt-2 sm:flex-row">
         <button
           id="view-work-btn"
-          class="group cursor-pointer inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-primary px-7 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90 hover:gap-3"
+          class="group cursor-pointer inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-primary px-7 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90"
         >
           View my work
           <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -110,4 +110,63 @@ import { PenLine, ArrowRight } from 'lucide-react';
       toast.error('Failed to copy email');
     }
   });
+
+  // Interactive gradient blob - follows cursor with spring physics
+  const blob = document.getElementById('hero-blob');
+  const heroSection = document.getElementById('hero-section');
+
+  if (blob && heroSection) {
+    let blobX = 0;
+    let blobY = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let currentScale = 1;
+    let targetScale = 1;
+    let prevMouseX = 0;
+    let prevMouseY = 0;
+    let isHovering = false;
+    let animId: number;
+
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+    const animate = () => {
+      blobX = lerp(blobX, targetX, 0.04);
+      blobY = lerp(blobY, targetY, 0.04);
+      currentScale = lerp(currentScale, targetScale, 0.06);
+
+      blob.style.transform = `translate(${blobX}px, ${blobY}px) scale(${currentScale})`;
+
+      animId = requestAnimationFrame(animate);
+    };
+
+    heroSection.addEventListener('mouseenter', () => {
+      isHovering = true;
+      targetScale = 1.2;
+    });
+
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      // Position blob relative to its default CSS position (top: -120px, left: -100px)
+      targetX = (e.clientX - rect.left - 200);
+      targetY = (e.clientY - rect.top - 80);
+
+      // Calculate cursor velocity for scale boost
+      const dx = e.clientX - prevMouseX;
+      const dy = e.clientY - prevMouseY;
+      const speed = Math.sqrt(dx * dx + dy * dy);
+      targetScale = 1.2 + Math.min(speed * 0.004, 0.4);
+
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
+    });
+
+    heroSection.addEventListener('mouseleave', () => {
+      isHovering = false;
+      targetX = 0;
+      targetY = 0;
+      targetScale = 1;
+    });
+
+    animId = requestAnimationFrame(animate);
+  }
 </script>

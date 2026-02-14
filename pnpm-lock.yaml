@@ -59,9 +59,6 @@ importers:
       tailwindcss:
         specifier: ^4.1.17
         version: 4.1.17
-      yet-another-react-lightbox:
-        specifier: ^3.26.0
-        version: 3.26.0(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
     devDependencies:
       '@types/react':
         specifier: ^19.2.7
@@ -2250,20 +2247,6 @@ packages:
   yargs-parser@21.1.1:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
-
-  yet-another-react-lightbox@3.26.0:
-    resolution: {integrity: sha512-/JQqrzh9gEjD7X8PcEmUHAT61Ga9Qf4FTUFJcvW/j40RE5OYKQjQfGhcy2XVyG3GshVZ42+boeKsK1EySIznNA==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@types/react': ^16 || ^17 || ^18 || ^19
-      '@types/react-dom': ^16 || ^17 || ^18 || ^19
-      react: ^16.8.0 || ^17 || ^18 || ^19
-      react-dom: ^16.8.0 || ^17 || ^18 || ^19
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      '@types/react-dom':
-        optional: true
 
   yocto-queue@1.2.2:
     resolution: {integrity: sha512-4LCcse/U2MHZ63HAJVE+v71o7yOdIe4cZ70Wpf8D/IyjDKYQLV5GD46B+hSTjJsvV5PztjvHoU580EftxjDZFQ==}
@@ -4606,14 +4589,6 @@ snapshots:
   yallist@3.1.1: {}
 
   yargs-parser@21.1.1: {}
-
-  yet-another-react-lightbox@3.26.0(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.1(react@19.2.1))(react@19.2.1):
-    dependencies:
-      react: 19.2.1
-      react-dom: 19.2.1(react@19.2.1)
-    optionalDependencies:
-      '@types/react': 19.2.7
-      '@types/react-dom': 19.2.3(@types/react@19.2.7)
 
   yocto-queue@1.2.2: {}
 

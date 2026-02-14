@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { ImageLightboxModal } from '@/components/react/ImageLightboxModal';
+import { ImagePreviewModal } from '@/components/react/ImagePreviewModal';
 
 interface Props {
   images: string[];
@@ -11,13 +11,13 @@ interface Props {
 const { images, alt, className } = Astro.props;
 ---
 
-<div class="optimized-image-lightbox">
+<div class="image-preview-wrapper">
   <div
     class:list={[
-      'group relative cursor-zoom-in overflow-hidden rounded-lg',
+      'group relative cursor-pointer overflow-hidden rounded-lg',
       className
     ]}
-    data-lightbox-trigger
+    data-preview-trigger
   >
     <div class="absolute inset-0 z-10 bg-black/0 transition-all duration-300 group-hover:bg-black/30"></div>
     <div class="absolute inset-0 z-20 flex items-center justify-center opacity-0 transition-all duration-300 group-hover:opacity-100">
@@ -37,5 +37,5 @@ const { images, alt, className } = Astro.props;
     )}
   </div>
 
-  <ImageLightboxModal images={images} alt={alt} client:load />
+  <ImagePreviewModal images={images} alt={alt} client:load />
 </div>

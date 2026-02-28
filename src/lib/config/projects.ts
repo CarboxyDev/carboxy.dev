@@ -11,9 +11,23 @@ interface Project {
   isFeatured: boolean;
   type: ProjectType;
   cropImage?: boolean;
+  rawImage?: boolean;
 }
 
 const PROJECTS: Project[] = [
+  {
+    id: 'lunardisk',
+    title: 'LunarDisk',
+    description:
+      'LunarDisk is an open-source macOS app that visualizes disk usage to help you find and clean large storage consumers safely. Select a folder or volume, run a recursive scan, and navigate size breakdowns to reclaim your storage.',
+    href: 'https://lunardisk.carboxy.dev',
+    images: ['lunardisk1.png'],
+    techStack: ['Swift', 'SwiftUI', 'macOS'],
+    github: 'https://github.com/CarboxyDev/lunardisk',
+    isFeatured: true,
+    type: 'Open Source',
+    rawImage: true,
+  },
   {
     id: 'blitzpack',
     title: 'Blitzpack',

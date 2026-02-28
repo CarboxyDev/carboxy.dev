@@ -23,8 +23,17 @@ const projects = getFeaturedProjects();
           >
             <!-- Image -->
             <div class="w-full">
-              <div class="overflow-hidden rounded-xl border border-border/50 bg-card/30 transition-all duration-300 group-hover/card:border-border group-hover/card:shadow-lg group-hover/card:shadow-black/5">
-                {project.cropImage ? (
+              <div class={`overflow-hidden rounded-xl ${project.rawImage ? '' : 'border border-border/50 bg-card/30 transition-all duration-300 group-hover/card:border-border group-hover/card:shadow-lg group-hover/card:shadow-black/5'}`}>
+                {project.rawImage ? (
+                  <Image
+                    src={`/${project.images[0]}`}
+                    alt={`${project.title} preview`}
+                    width={800}
+                    height={600}
+                    class="w-full"
+                    loading="lazy"
+                  />
+                ) : project.cropImage ? (
                   <div class="group/img relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden">
                     <Image
                       src={`/${project.images[0]}`}

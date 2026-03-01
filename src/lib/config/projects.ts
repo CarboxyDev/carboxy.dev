@@ -73,7 +73,7 @@ const PROJECTS: Project[] = [
     images: ['quizfoundry1.png'],
     techStack: ['TypeScript', 'Next.js', 'Express.js'],
     github: 'https://github.com/CarboxyDev/quizfoundry',
-    isFeatured: true,
+    isFeatured: false,
     type: 'Open Source',
   },
 ];

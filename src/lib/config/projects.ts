@@ -58,8 +58,8 @@ const PROJECTS: Project[] = [
     title: 'AddenAI',
     description:
       'AddenAI is a web platform for optimizing Google Ads and Meta Ads accounts and campaigns. You can chat with all your marketing data in a unified interface and create custom reports to better understand your campaigns.',
-    href: 'https://adden.ai/sign-in',
-    images: ['adden3.png'],
+    href: 'https://adden.ai',
+    images: ['adden1.png'],
     techStack: ['TypeScript', 'Next.js', 'FastAPI'],
     isFeatured: true,
     type: 'SaaS',

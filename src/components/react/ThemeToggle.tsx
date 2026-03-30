@@ -11,12 +11,12 @@ export function ThemeToggle() {
     if (stored === "light" || stored === "dark") {
       setTheme(stored);
       document.documentElement.classList.toggle("dark", stored === "dark");
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
     } else {
-      setTheme("light");
-      document.documentElement.classList.remove("dark");
+      const resolvedTheme = window.matchMedia("(prefers-color-scheme: light)").matches
+        ? "light"
+        : "dark";
+      setTheme(resolvedTheme);
+      document.documentElement.classList.toggle("dark", resolvedTheme === "dark");
     }
   }, []);
 

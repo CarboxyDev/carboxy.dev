@@ -1,0 +1,54 @@
+---
+import { Globe, LayoutDashboard, Puzzle, Smartphone, Sparkles, Wand2 } from 'lucide-react';
+
+const capabilities = [
+  {
+    icon: Globe,
+    title: 'Web Apps & SaaS',
+    description: 'Full-stack products from database schema to deployment, including auth, billing, APIs, and dashboards.',
+  },
+  {
+    icon: Sparkles,
+    title: 'AI-Powered Features',
+    description: 'LLM integrations, chat interfaces, and AI-assisted workflows built into real products.',
+  },
+  {
+    icon: LayoutDashboard,
+    title: 'Internal Tools',
+    description: 'Admin panels, ops dashboards, and custom tooling that make teams faster.',
+  },
+  {
+    icon: Puzzle,
+    title: 'Browser Extensions',
+    description: 'Chrome extensions with rich UIs and local-first or cloud-backed data.',
+  },
+  {
+    icon: Smartphone,
+    title: 'Mobile Apps',
+    description: 'Cross-platform iOS and Android apps with a single shared codebase.',
+  },
+  {
+    icon: Wand2,
+    title: 'Anything, Really',
+    description: "With AI in the workflow, I can move fast in unfamiliar territory. If it's software, I'll figure it out.",
+  },
+];
+---
+
+<section data-section="what-i-build" class="pt-20 lg:pt-32">
+  <h2 class="text-2xl font-semibold tracking-tight text-foreground md:text-3xl font-heading">
+    What I Build
+  </h2>
+
+  <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+    {capabilities.map(({ icon: Icon, title, description }) => (
+      <div class="group rounded-xl border border-border bg-card p-5 transition-colors duration-200 hover:border-border/80 hover:bg-accent/40">
+        <div class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-muted text-muted-foreground transition-colors duration-200 group-hover:text-foreground">
+          <Icon className="h-4 w-4" />
+        </div>
+        <h3 class="text-sm font-semibold text-foreground">{title}</h3>
+        <p class="mt-1 text-sm leading-relaxed text-muted-foreground">{description}</p>
+      </div>
+    ))}
+  </div>
+</section>

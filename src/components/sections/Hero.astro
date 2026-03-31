@@ -32,7 +32,7 @@ import { PenLine, ArrowRight } from 'lucide-react';
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Follow on Twitter"
-          class="inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground hover:scale-105"
+          class="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground hover:scale-105"
         >
           <TwitterIcon className="h-5 w-5" />
         </a>
@@ -41,7 +41,7 @@ import { PenLine, ArrowRight } from 'lucide-react';
           target="_blank"
           rel="noopener noreferrer"
           aria-label="View GitHub profile"
-          class="inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground hover:scale-105"
+          class="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground hover:scale-105"
         >
           <GithubIcon className="h-5 w-5" />
         </a>
@@ -49,7 +49,7 @@ import { PenLine, ArrowRight } from 'lucide-react';
           id="hero-email-btn"
           type="button"
           aria-label="Copy email address"
-          class="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground hover:scale-105"
+          class="focus-ring inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground hover:scale-105"
         >
           <MailIcon className="h-5 w-5" />
         </button>
@@ -58,7 +58,7 @@ import { PenLine, ArrowRight } from 'lucide-react';
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Read blog"
-          class="inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground hover:scale-105"
+          class="focus-ring inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground hover:scale-105"
         >
           <PenLine className="h-5 w-5" />
         </a>
@@ -67,14 +67,16 @@ import { PenLine, ArrowRight } from 'lucide-react';
       <div class="hero-stagger hero-stagger-5 flex flex-col gap-3 pt-2 sm:flex-row">
         <button
           id="view-work-btn"
-          class="group cursor-pointer inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-primary px-7 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90"
+          type="button"
+          class="focus-ring group cursor-pointer inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-primary px-7 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90"
         >
           View my work
           <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
         </button>
         <button
           id="contact-btn"
-          class="cursor-pointer inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-border bg-transparent px-7 text-sm font-medium text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground"
+          type="button"
+          class="focus-ring cursor-pointer inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-border bg-transparent px-7 text-sm font-medium text-muted-foreground transition-all duration-200 hover:bg-accent hover:text-foreground"
         >
           Get in touch
         </button>
@@ -114,8 +116,9 @@ import { PenLine, ArrowRight } from 'lucide-react';
   // Interactive gradient blob - follows cursor with spring physics
   const blob = document.getElementById('hero-blob');
   const heroSection = document.getElementById('hero-section');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (blob && heroSection) {
+  if (blob && heroSection && !prefersReducedMotion) {
     let blobX = 0;
     let blobY = 0;
     let targetX = 0;
@@ -124,7 +127,6 @@ import { PenLine, ArrowRight } from 'lucide-react';
     let targetScale = 1;
     let prevMouseX = 0;
     let prevMouseY = 0;
-    let isHovering = false;
     let animId: number;
 
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -140,7 +142,6 @@ import { PenLine, ArrowRight } from 'lucide-react';
     };
 
     heroSection.addEventListener('mouseenter', () => {
-      isHovering = true;
       targetScale = 1.2;
     });
 
@@ -161,7 +162,6 @@ import { PenLine, ArrowRight } from 'lucide-react';
     });
 
     heroSection.addEventListener('mouseleave', () => {
-      isHovering = false;
       targetX = 0;
       targetY = 0;
       targetScale = 1;

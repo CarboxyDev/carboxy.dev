@@ -93,6 +93,15 @@ body {
   font-family: var(--font-heading);
 }
 
+.focus-ring {
+  outline: none;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
 /* Simplified animations */
 @keyframes fade-in {
   from {
@@ -217,4 +226,37 @@ body {
 /* Lightbox styles */
 .yarl__root {
   --yarl__color_backdrop: hsl(var(--background) / 0.95);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    transition: none;
+  }
+
+  .animate-fade-in,
+  .animate-fade-in-up,
+  .hero-stagger,
+  .avatar-gradient {
+    animation: none;
+    transform: none;
+  }
+
+  .hero-stagger {
+    opacity: 1;
+  }
+
+  .hero-gradient-blob,
+  .hero-name,
+  .hero-name:hover {
+    transition: none;
+  }
+
+  .group\/img img {
+    transform: none !important;
+    transition: none !important;
+  }
 }

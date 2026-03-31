@@ -12,11 +12,14 @@ const { images, alt, className } = Astro.props;
 ---
 
 <div class="image-preview-wrapper">
-  <div
+  <button
+    type="button"
     class:list={[
-      'group relative cursor-pointer overflow-hidden rounded-lg',
+      'focus-ring group relative block w-full cursor-pointer overflow-hidden rounded-lg text-left',
       className
     ]}
+    aria-haspopup="dialog"
+    aria-label={`Preview ${alt}`}
     data-preview-trigger
   >
     <div class="absolute inset-0 z-10 bg-black/0 transition-all duration-300 group-hover:bg-black/30"></div>
@@ -35,7 +38,7 @@ const { images, alt, className } = Astro.props;
         loading="lazy"
       />
     )}
-  </div>
+  </button>
 
   <ImagePreviewModal images={images} alt={alt} client:load />
 </div>

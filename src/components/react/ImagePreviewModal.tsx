@@ -11,6 +11,8 @@ export const ImagePreviewModal = ({ images, alt }: ImagePreviewModalProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const anchorRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   const close = useCallback(() => {
     setIsVisible(false);
@@ -18,6 +20,9 @@ export const ImagePreviewModal = ({ images, alt }: ImagePreviewModalProps) => {
   }, []);
 
   const open = useCallback(() => {
+    previousFocusRef.current = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
     setIsOpen(true);
   }, []);
 
@@ -28,6 +33,7 @@ export const ImagePreviewModal = ({ images, alt }: ImagePreviewModalProps) => {
     const frameId = requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         setIsVisible(true);
+        closeButtonRef.current?.focus();
       });
     });
     return () => cancelAnimationFrame(frameId);
@@ -62,6 +68,7 @@ export const ImagePreviewModal = ({ images, alt }: ImagePreviewModalProps) => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
+      previousFocusRef.current?.focus();
     };
   }, [isOpen, close]);
 
@@ -72,6 +79,9 @@ export const ImagePreviewModal = ({ images, alt }: ImagePreviewModalProps) => {
         createPortal(
           <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8"
+            role="dialog"
+            aria-modal="true"
+            aria-label={alt}
             style={{
               backgroundColor: isVisible
                 ? 'rgba(0, 0, 0, 0.92)'
@@ -85,8 +95,10 @@ export const ImagePreviewModal = ({ images, alt }: ImagePreviewModalProps) => {
             }}
           >
             <button
+              ref={closeButtonRef}
+              type="button"
               onClick={close}
-              className="absolute right-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/80 transition-colors hover:bg-white/20 hover:text-white"
+              className="focus-ring absolute right-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/80 transition-colors hover:bg-white/20 hover:text-white"
               style={{
                 opacity: isVisible ? 1 : 0,
                 transition: 'opacity 200ms ease-out 50ms',

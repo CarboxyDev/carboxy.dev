@@ -148,29 +148,35 @@ body {
 
 .hero-gradient-blob {
   position: absolute;
-  top: -170px;
+  top: -200px;
   left: 50%;
-  width: 520px;
-  height: 520px;
+  width: 600px;
+  height: 460px;
   background: radial-gradient(
-    circle at center,
-    hsl(var(--primary) / 0.08) 0%,
-    hsl(var(--primary) / 0.03) 40%,
-    transparent 70%
+    ellipse at center,
+    hsl(var(--primary) / 0.10) 0%,
+    hsl(var(--primary) / 0.04) 50%,
+    transparent 72%
   );
-  filter: blur(78px);
+  filter: blur(72px);
   pointer-events: none;
   z-index: -1;
   will-change: transform;
-  transition: opacity 0.3s ease;
+  transform: translate(-180px, 0);
+  opacity: 0;
+  animation: hero-blob-in 0.7s 0.1s ease-out forwards;
+}
+
+@keyframes hero-blob-in {
+  to { opacity: 1; }
 }
 
 .dark .hero-gradient-blob {
   background: radial-gradient(
-    circle at center,
-    hsl(250 60% 60% / 0.12) 0%,
-    hsl(280 50% 50% / 0.06) 40%,
-    transparent 70%
+    ellipse at center,
+    hsl(214 85% 62% / 0.14) 0%,
+    hsl(214 80% 58% / 0.05) 50%,
+    transparent 72%
   );
 }
 
@@ -223,6 +229,8 @@ body {
 
   .hero-gradient-blob {
     transition: none;
+    animation: none;
+    opacity: 1;
   }
 
   .group\/img img {

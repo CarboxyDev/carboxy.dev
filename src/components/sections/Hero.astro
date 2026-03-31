@@ -115,43 +115,32 @@ import { PenLine, ArrowRight } from 'lucide-react';
     let blobY = 0;
     let targetX = -180;
     let targetY = 0;
-    let currentScale = 1.04;
-    let targetScale = 1.04;
-    let animId: number;
 
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
     const animate = () => {
-      blobX = lerp(blobX, targetX, 0.025);
-      blobY = lerp(blobY, targetY, 0.025);
-      currentScale = lerp(currentScale, targetScale, 0.04);
+      blobX = lerp(blobX, targetX, 0.032);
+      blobY = lerp(blobY, targetY, 0.032);
 
-      blob.style.transform = `translate(${blobX}px, ${blobY}px) scale(${currentScale})`;
+      blob.style.transform = `translate(${blobX}px, ${blobY}px)`;
 
-      animId = requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
     };
-
-    heroSection.addEventListener('mouseenter', () => {
-      targetScale = 1.08;
-    });
 
     heroSection.addEventListener('mousemove', (e) => {
       const rect = heroSection.getBoundingClientRect();
       const normalizedX = (e.clientX - rect.left) / rect.width - 0.5;
       const normalizedY = (e.clientY - rect.top) / rect.height - 0.5;
 
-      // Keep the blob anchored near the upper-left of the hero and let it drift subtly.
-      targetX = -180 + normalizedX * 90;
-      targetY = normalizedY * 55;
-      targetScale = 1.06;
+      targetX = -180 + normalizedX * 180;
+      targetY = normalizedY * 110;
     });
 
     heroSection.addEventListener('mouseleave', () => {
       targetX = -180;
       targetY = 0;
-      targetScale = 1.04;
     });
 
-    animId = requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
   }
 </script>
